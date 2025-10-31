@@ -52,29 +52,42 @@
     <canvas id="bg"></canvas>
     <!-- Top Part -->
     <div class="py-5" style="background-image: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0)), url('./img/Joshua.png'); background-size: cover; background-position: center;">
-        <nav class="px-4 mx-5 py-5">
-            <div class="flex my-font-sub p-3 gap-5 text-center justify-between">
-                <div class="flex justify-start">
+        <nav class="px-4 mx-5 py-5 my-font-sub">
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="flex items-center">
                     <img src="img/logo.jpg" alt="LogoImg" width="90" height="90" class="rounded-full">
+                </a>
+                <!-- Hamburger Menu for mobile -->
+                <div class="md:hidden">
+                    <button id="menu-btn" class="text-white focus:outline-none">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                    </button>
                 </div>
-                <div class="flex justify-end ">
-                    <a href="about.html" class="font-semibold text-black text-lg  hover:text-gray-500 transition duration-300 ease-in-out text-white">About Me</a>
-                    <a href="sampledwork.html" class="font-semibold text-black text-lg mx-4 hover:text-gray-500 transition duration-300 ease-in-out text-white">Projects</a>
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="about.html" class="font-semibold text-lg hover:text-gray-500 transition duration-300 ease-in-out text-white">About Me</a>
+                    <a href="sampledwork.html" class="font-semibold text-lg hover:text-gray-500 transition duration-300 ease-in-out text-white">Projects</a>
                 </div>
+            </div>
+            <!-- Mobile Menu -->
+            <div id="menu" class="hidden md:hidden fixed top-0 right-0 h-full w-64 bg-gray-900 bg-opacity-90 shadow-lg p-5 space-y-4 z-50">
+                <a href="about.html" class="block text-right font-semibold text-lg hover:text-gray-400 transition duration-300 ease-in-out text-white">About Me</a>
+                <a href="sampledwork.html" class="block text-right font-semibold text-lg hover:text-gray-400 transition duration-300 ease-in-out text-white">Projects</a>
             </div>
         </nav>
 
         <!-- Middle Part -->
-        <div class="grid grid-cols-2 gap-1 px-5 mt-5 mb-5 items-center justify-center">
-            <div class="col-span-1"></div>
-            <div class="col-span-1 text-white flex flex-col justify-center ml-15">
-                <h1 class="my-font text-9xl font-semibold my-color-heading tracking-[20px]">I'm Joshua </h1>
-                <h1 class="my-font text-9xl font-semibold my-color-heading tracking-[32px]">Domingo,</h1>
-                <div class="flex-col items-center justify-center mt-2">
-                    <p class="text-black text-sm  my-font-sub mr-12 justify text-white">I'm a frontend developer, ready to help you grow your business with a website that attracts more clients and increases sales.</p>
-                    <p class="text-black mt-10 mb-5 my-font-sub text-lg font-semibold text-white">Socials</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 px-5 mt-10 mb-20 items-center">
+            <!-- Empty column for spacing on larger screens -->
+            <div class="hidden md:block"></div>
+            <div class="text-white flex flex-col justify-center text-center md:text-left">
+                <h1 class="my-font text-6xl md:text-7xl lg:text-9xl font-semibold my-color-heading tracking-widest">I'm Joshua </h1>
+                <h1 class="my-font text-6xl md:text-7xl lg:text-9xl font-semibold my-color-heading tracking-[20px] lg:tracking-[32px]">Domingo,</h1>
+                <div class="flex-col items-center justify-center mt-4">
+                    <p class="my-font-sub text-base md:text-lg text-white max-w-md mx-auto md:mx-0 md:mr-12">I'm a frontend developer, ready to help you grow your business with a website that attracts more clients and increases sales.</p>
+                    <p class="mt-10 mb-5 my-font-sub text-lg font-semibold text-white">Socials</p>
                     <!-- Socials Links -->
-                    <div class="flex space-x-10 ">
+                    <div class="flex space-x-10 justify-center md:justify-start">
                         <a href="https://web.facebook.com/joshus.domingo" class="group flex justify-center p-2 rounded-md drop-shadow-xl from-gray-800 bg-[#424242] text-white font-semibold hover:translate-y-3 hover:rounded-[50%] transition-all duration-500 hover:from-[#331029] hover:to-[#310413]" >
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30" fill="white">
                                 <circle cx="12" cy="12" r="12" fill="#3b5998"/>
@@ -113,12 +126,12 @@
     <!-- About Me Section -->
     <div class="flex-column items-center justify-center mt-10  py-10">
         <h1 class="text-white my-font text-7xl font-semibold uppercase tracking-[20px] text-center my-color-heading py-5">Who Am  I?</h1>
-        <div class="grid grid-cols-2 my-10 mx-10">
-            <img src="img/Joshua.png" alt="" class="w-full h-100 rounded-xl mb-5 shadow-lg shadow-stone-50/50">
+        <div class="grid grid-cols-1 md:grid-cols-2 my-10 mx-10 gap-5">
+            <img src="img/Joshua.png" alt="" class="w-full rounded-xl mb-5 shadow-lg shadow-stone-50/50">
             <div>
-                <p class="text-white my-font-sub text-lg mt-10 mx-10 leading-10 tracking-[.5px]">
-                I am Joshua Domingo, 22-year-old student at PHINMA Araullo University. I am a committed student who wants to become a good front-end developer. My colorful goals and objectives, which I hold dearly, have driven my academic career. I see myself as an expressive person who loves to voice my ideas to people. I enjoy speaking honestly, whether it's to share my opinions on a subject or to articulate concepts for a project.
-                </p>
+                <p class="text-white my-font-sub text-lg mt-5 md:mt-10 mx-5 md:mx-10 leading-7 md:leading-10 tracking-[.5px] text-justify">
+                    I am Joshua Domingo, 22-year-old student at PHINMA Araullo University. I am a committed student who wants to become a good front-end developer. My colorful goals and objectives, which I hold dearly, have driven my academic career. I see myself as an expressive person who loves to voice my ideas to people. I enjoy speaking honestly, whether it's to share my opinions on a subject or to articulate concepts for a project.
+                 </p>
                 <div class="py-5 px-10 flex justify-end">
                     <a href="Joshua Domingo.pdf" download class="bg-slate-700 p-2 rounded-xl text-white text-center hover:bg-[#9dd0b4] hover:text-white ease-in-out flex items-center gap-2" title="Download Resume">
                         <i class="fas fa-download text-white"></i>
@@ -130,141 +143,82 @@
     </div>
 
     <!-- Caraouserl of Tech Stack-->
-    <div class="carousel-container overflow-hidden">
-        <div class="carousel-track flex">
-            <!-- First Group -->
-            <div class="flex gap-10 ">
-                <div class="group relative opacity-60 flex">
-                    <i class="fa-brands fa-html5 text-7xl text-[#E44D26] hover:scale-110 transition duration-300 px-5"></i>
-                    <span class="absolute -top-10 left-1/2 -translate-x-1/2 bg-black text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">HTML5</span>
-                    <i class="fa-brands fa-css3-alt text-[#1572B6] text-7xl px-5"></i>
-                    <span class="absolute -top-10 left-1/2 -translate-x-1/2 bg-black text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">CSS</span>
-                    <i class="fa-brands fa-php text-[#777BB4] text-7xl px-5"></i>
-                    <span class="absolute -top-10 left-1/2 -translate-x-1/2 bg-black text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">PHP</span>
-                    <i class="fa-brands fa-laravel text-[#FF2D20] text-7xl px-5"></i>
-                    <span class="absolute -top-10 left-1/2 -translate-x-1/2 bg-black text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">Laravel</span>
-                    <svg class="w-24 h-24 px-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill="#38BDF8" d="M12 6C9.33333 6 7.66667 7.33333 7 10C8 8.66667 9.16667 8.16667 10.5 8.5C11.2107 8.68947 11.7125 9.19947 12.2728 9.76974C13.2202 10.7272 14.3162 11.8333 16.5 11.8333C19.1667 11.8333 20.8333 10.5 21.5 7.83333C20.5 9.16667 19.3333 9.66667 18 9.33333C17.2893 9.14386 16.7875 8.63386 16.2272 8.06359C15.2798 7.10612 14.1838 6 12 6ZM7.5 12C4.83333 12 3.16667 13.3333 2.5 16C3.5 14.6667 4.66667 14.1667 6 14.5C6.71067 14.6895 7.21251 15.1995 7.77277 15.7697C8.72022 16.7272 9.81619 17.8333 12 17.8333C14.6667 17.8333 16.3333 16.5 17 13.8333C16 15.1667 14.8333 15.6667 13.5 15.3333C12.7893 15.1439 12.2875 14.6339 11.7272 14.0636C10.7798 13.1061 9.68381 12 7.5 12Z"/>
-                    </svg>
-                    <span class="absolute -top-10 left-1/2 -translate-x-1/2 bg-black text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">Tailwind</span>
-                </div>
-                <div class="group relative opacity-60 flex">
-                    <i class="fa-brands fa-html5 text-7xl text-[#E44D26] hover:scale-110 transition duration-300 px-5"></i>
-                    <span class="absolute -top-10 left-1/2 -translate-x-1/2 bg-black text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">HTML5</span>
-                    <i class="fa-brands fa-css3-alt text-[#1572B6] text-7xl px-5"></i>
-                    <span class="absolute -top-10 left-1/2 -translate-x-1/2 bg-black text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">CSS</span>
-                    <i class="fa-brands fa-php text-[#777BB4] text-7xl px-5"></i>
-                    <span class="absolute -top-10 left-1/2 -translate-x-1/2 bg-black text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">PHP</span>
-                    <i class="fa-brands fa-laravel text-[#FF2D20] text-7xl px-5"></i>
-                    <span class="absolute -top-10 left-1/2 -translate-x-1/2 bg-black text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">Laravel</span>
-                    <svg class="w-24 h-24 px-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill="#38BDF8" d="M12 6C9.33333 6 7.66667 7.33333 7 10C8 8.66667 9.16667 8.16667 10.5 8.5C11.2107 8.68947 11.7125 9.19947 12.2728 9.76974C13.2202 10.7272 14.3162 11.8333 16.5 11.8333C19.1667 11.8333 20.8333 10.5 21.5 7.83333C20.5 9.16667 19.3333 9.66667 18 9.33333C17.2893 9.14386 16.7875 8.63386 16.2272 8.06359C15.2798 7.10612 14.1838 6 12 6ZM7.5 12C4.83333 12 3.16667 13.3333 2.5 16C3.5 14.6667 4.66667 14.1667 6 14.5C6.71067 14.6895 7.21251 15.1995 7.77277 15.7697C8.72022 16.7272 9.81619 17.8333 12 17.8333C14.6667 17.8333 16.3333 16.5 17 13.8333C16 15.1667 14.8333 15.6667 13.5 15.3333C12.7893 15.1439 12.2875 14.6339 11.7272 14.0636C10.7798 13.1061 9.68381 12 7.5 12Z"/>
-                    </svg>
-                    <span class="absolute -top-10 left-1/2 -translate-x-1/2 bg-black text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">Tailwind</span>
-                </div>
+    <div class="carousel-container overflow-hidden mt-10 py-4">
+        <div class="carousel-track flex items-center">
+            <!-- Icons are duplicated for a seamless scroll effect -->
+            <!-- Group 1 -->
+            <div class="flex-shrink-0 flex justify-around items-center gap-x-6 md:gap-x-12 px-6">
+                <i class="fa-brands fa-html5 text-5xl md:text-7xl text-[#E44D26] opacity-60 hover:opacity-100 hover:scale-110 transition-all duration-300"></i>
+                <i class="fa-brands fa-css3-alt text-5xl md:text-7xl text-[#1572B6] opacity-60 hover:opacity-100 hover:scale-110 transition-all duration-300"></i>
+                <i class="fa-brands fa-php text-5xl md:text-7xl text-[#777BB4] opacity-60 hover:opacity-100 hover:scale-110 transition-all duration-300"></i>
+                <i class="fa-brands fa-laravel text-5xl md:text-7xl text-[#FF2D20] opacity-60 hover:opacity-100 hover:scale-110 transition-all duration-300"></i>
+                <svg class="w-16 h-16 md:w-20 md:h-20 opacity-60 hover:opacity-100 hover:scale-110 transition-all duration-300" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="#38BDF8" d="M12 6C9.33333 6 7.66667 7.33333 7 10C8 8.66667 9.16667 8.16667 10.5 8.5C11.2107 8.68947 11.7125 9.19947 12.2728 9.76974C13.2202 10.7272 14.3162 11.8333 16.5 11.8333C19.1667 11.8333 20.8333 10.5 21.5 7.83333C20.5 9.16667 19.3333 9.66667 18 9.33333C17.2893 9.14386 16.7875 8.63386 16.2272 8.06359C15.2798 7.10612 14.1838 6 12 6ZM7.5 12C4.83333 12 3.16667 13.3333 2.5 16C3.5 14.6667 4.66667 14.1667 6 14.5C6.71067 14.6895 7.21251 15.1995 7.77277 15.7697C8.72022 16.7272 9.81619 17.8333 12 17.8333C14.6667 17.8333 16.3333 16.5 17 13.8333C16 15.1667 14.8333 15.6667 13.5 15.3333C12.7893 15.1439 12.2875 14.6339 11.7272 14.0636C10.7798 13.1061 9.68381 12 7.5 12Z"/>
+                </svg>
             </div>
-            <div class="flex gap-10 ">
-                <div class="group relative opacity-60 flex">
-                    <i class="fa-brands fa-html5 text-7xl text-[#E44D26] hover:scale-110 transition duration-300 px-5"></i>
-                    <span class="absolute -top-10 left-1/2 -translate-x-1/2 bg-black text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">HTML5</span>
-                    <i class="fa-brands fa-css3-alt text-[#1572B6] text-7xl px-5"></i>
-                    <span class="absolute -top-10 left-1/2 -translate-x-1/2 bg-black text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">CSS</span>
-                    <i class="fa-brands fa-php text-[#777BB4] text-7xl px-5"></i>
-                    <span class="absolute -top-10 left-1/2 -translate-x-1/2 bg-black text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">PHP</span>
-                    <i class="fa-brands fa-laravel text-[#FF2D20] text-7xl px-5"></i>
-                    <span class="absolute -top-10 left-1/2 -translate-x-1/2 bg-black text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">Laravel</span>
-                    <svg class="w-24 h-24 px-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Group 2 (Duplicate of Group 1) -->
+            <div class="flex-shrink-0 flex justify-around items-center gap-x-6 md:gap-x-12 px-6">
+                <i class="fa-brands fa-html5 text-5xl md:text-7xl text-[#E44D26] opacity-60 hover:opacity-100 hover:scale-110 transition-all duration-300"></i>
+                <i class="fa-brands fa-css3-alt text-5xl md:text-7xl text-[#1572B6] opacity-60 hover:opacity-100 hover:scale-110 transition-all duration-300"></i>
+                <i class="fa-brands fa-php text-5xl md:text-7xl text-[#777BB4] opacity-60 hover:opacity-100 hover:scale-110 transition-all duration-300"></i>
+                <i class="fa-brands fa-laravel text-5xl md:text-7xl text-[#FF2D20] opacity-60 hover:opacity-100 hover:scale-110 transition-all duration-300"></i>
+                <svg class="w-16 h-16 md:w-20 md:h-20 opacity-60 hover:opacity-100 hover:scale-110 transition-all duration-300" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fill="#38BDF8" d="M12 6C9.33333 6 7.66667 7.33333 7 10C8 8.66667 9.16667 8.16667 10.5 8.5C11.2107 8.68947 11.7125 9.19947 12.2728 9.76974C13.2202 10.7272 14.3162 11.8333 16.5 11.8333C19.1667 11.8333 20.8333 10.5 21.5 7.83333C20.5 9.16667 19.3333 9.66667 18 9.33333C17.2893 9.14386 16.7875 8.63386 16.2272 8.06359C15.2798 7.10612 14.1838 6 12 6ZM7.5 12C4.83333 12 3.16667 13.3333 2.5 16C3.5 14.6667 4.66667 14.1667 6 14.5C6.71067 14.6895 7.21251 15.1995 7.77277 15.7697C8.72022 16.7272 9.81619 17.8333 12 17.8333C14.6667 17.8333 16.3333 16.5 17 13.8333C16 15.1667 14.8333 15.6667 13.5 15.3333C12.7893 15.1439 12.2875 14.6339 11.7272 14.0636C10.7798 13.1061 9.68381 12 7.5 12Z"/>
                     </svg>
-                    <span class="absolute -top-10 left-1/2 -translate-x-1/2 bg-black text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">Tailwind</span>
-                </div>
-                <div class="group relative opacity-60 flex">
-                    <i class="fa-brands fa-html5 text-7xl text-[#E44D26] hover:scale-110 transition duration-300 px-5"></i>
-                    <span class="absolute -top-10 left-1/2 -translate-x-1/2 bg-black text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">HTML5</span>
-                    <i class="fa-brands fa-css3-alt text-[#1572B6] text-7xl px-5"></i>
-                    <span class="absolute -top-10 left-1/2 -translate-x-1/2 bg-black text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">CSS</span>
-                    <i class="fa-brands fa-php text-[#777BB4] text-7xl px-5"></i>
-                    <span class="absolute -top-10 left-1/2 -translate-x-1/2 bg-black text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">PHP</span>
-                    <i class="fa-brands fa-laravel text-[#FF2D20] text-7xl px-5"></i>
-                    <span class="absolute -top-10 left-1/2 -translate-x-1/2 bg-black text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">Laravel</span>
-                    <svg class="w-24 h-24 px-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill="#38BDF8" d="M12 6C9.33333 6 7.66667 7.33333 7 10C8 8.66667 9.16667 8.16667 10.5 8.5C11.2107 8.68947 11.7125 9.19947 12.2728 9.76974C13.2202 10.7272 14.3162 11.8333 16.5 11.8333C19.1667 11.8333 20.8333 10.5 21.5 7.83333C20.5 9.16667 19.3333 9.66667 18 9.33333C17.2893 9.14386 16.7875 8.63386 16.2272 8.06359C15.2798 7.10612 14.1838 6 12 6ZM7.5 12C4.83333 12 3.16667 13.3333 2.5 16C3.5 14.6667 4.66667 14.1667 6 14.5C6.71067 14.6895 7.21251 15.1995 7.77277 15.7697C8.72022 16.7272 9.81619 17.8333 12 17.8333C14.6667 17.8333 16.3333 16.5 17 13.8333C16 15.1667 14.8333 15.6667 13.5 15.3333C12.7893 15.1439 12.2875 14.6339 11.7272 14.0636C10.7798 13.1061 9.68381 12 7.5 12Z"/>
-                    </svg>
-                    <span class="absolute -top-10 left-1/2 -translate-x-1/2 bg-black text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">Tailwind</span>
-                </div>
-            </div>
-            <!-- Second Group (Horizontally Aligned) -->
-            <div class="flex  px-5">
-                <div class="group relative opacity-60 flex">
-                    <i class="fa-brands fa-html5 text-7xl text-[#E44D26] hover:scale-110 transition duration-300 px-5"></i>
-                    <span class="absolute -top-10 left-1/2 -translate-x-1/2 bg-black text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">HTML5</span>
-                    <i class="fa-brands fa-css3-alt text-[#1572B6] text-7xl px-5"></i>
-                    <span class="absolute -top-10 left-1/2 -translate-x-1/2 bg-black text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">CSS</span>
-                    <i class="fa-brands fa-php text-[#777BB4] text-7xl px-5"></i>
-                    <span class="absolute -top-10 left-1/2 -translate-x-1/2 bg-black text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">PHP</span>
-                    <i class="fa-brands fa-laravel text-[#FF2D20] text-7xl px-5"></i>
-                    <span class="absolute -top-10 left-1/2 -translate-x-1/2 bg-black text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">Laravel</span>
-                    <svg class="w-24 h-24 px-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill="#38BDF8" d="M12 6C9.33333 6 7.66667 7.33333 7 10C8 8.66667 9.16667 8.16667 10.5 8.5C11.2107 8.68947 11.7125 9.19947 12.2728 9.76974C13.2202 10.7272 14.3162 11.8333 16.5 11.8333C19.1667 11.8333 20.8333 10.5 21.5 7.83333C20.5 9.16667 19.3333 9.66667 18 9.33333C17.2893 9.14386 16.7875 8.63386 16.2272 8.06359C15.2798 7.10612 14.1838 6 12 6ZM7.5 12C4.83333 12 3.16667 13.3333 2.5 16C3.5 14.6667 4.66667 14.1667 6 14.5C6.71067 14.6895 7.21251 15.1995 7.77277 15.7697C8.72022 16.7272 9.81619 17.8333 12 17.8333C14.6667 17.8333 16.3333 16.5 17 13.8333C16 15.1667 14.8333 15.6667 13.5 15.3333C12.7893 15.1439 12.2875 14.6339 11.7272 14.0636C10.7798 13.1061 9.68381 12 7.5 12Z"/>
-                    </svg>
-                    <span class="absolute -top-10 left-1/2 -translate-x-1/2 bg-black text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">Tailwind</span>
-                </div>
-                <div class="group relative opacity-60 flex">
-                    <i class="fa-brands fa-html5 text-7xl text-[#E44D26] hover:scale-110 transition duration-300 px-5"></i>
-                    <span class="absolute -top-10 left-1/2 -translate-x-1/2 bg-black text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">HTML5</span>
-                    <i class="fa-brands fa-css3-alt text-[#1572B6] text-7xl px-5"></i>
-                    <span class="absolute -top-10 left-1/2 -translate-x-1/2 bg-black text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">CSS</span>
-                    <i class="fa-brands fa-php text-[#777BB4] text-7xl px-5"></i>
-                    <span class="absolute -top-10 left-1/2 -translate-x-1/2 bg-black text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">PHP</span>
-                    <i class="fa-brands fa-laravel text-[#FF2D20] text-7xl px-5"></i>
-                    <span class="absolute -top-10 left-1/2 -translate-x-1/2 bg-black text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">Laravel</span>
-                    <svg class="w-24 h-24 px-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill="#38BDF8" d="M12 6C9.33333 6 7.66667 7.33333 7 10C8 8.66667 9.16667 8.16667 10.5 8.5C11.2107 8.68947 11.7125 9.19947 12.2728 9.76974C13.2202 10.7272 14.3162 11.8333 16.5 11.8333C19.1667 11.8333 20.8333 10.5 21.5 7.83333C20.5 9.16667 19.3333 9.66667 18 9.33333C17.2893 9.14386 16.7875 8.63386 16.2272 8.06359C15.2798 7.10612 14.1838 6 12 6ZM7.5 12C4.83333 12 3.16667 13.3333 2.5 16C3.5 14.6667 4.66667 14.1667 6 14.5C6.71067 14.6895 7.21251 15.1995 7.77277 15.7697C8.72022 16.7272 9.81619 17.8333 12 17.8333C14.6667 17.8333 16.3333 16.5 17 13.8333C16 15.1667 14.8333 15.6667 13.5 15.3333C12.7893 15.1439 12.2875 14.6339 11.7272 14.0636C10.7798 13.1061 9.68381 12 7.5 12Z"/>
-                    </svg>
-                    <span class="absolute -top-10 left-1/2 -translate-x-1/2 bg-black text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">Tailwind</span>
-                </div>
             </div>
         </div>
     </div>
     
     <!-- Project Section -->
     <div class=" py-5 px-5">
-         <h1 class="text-white my-font text-7xl font-semibold uppercase tracking-[20px] text-center my-color-heading">Projects</h1>
+         <h1 class="text-white my-font text-5xl md:text-7xl font-semibold uppercase tracking-[10px] md:tracking-[20px] text-center my-color-heading">Projects</h1>
          <!-- Card -->
-         <div class="flex items-center justify-center gap-10 px-5  my-10 mx-5">
+         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 px-5 my-10 mx-auto max-w-7xl">
             <!-- Card 1 -->
-            <div class="bg-gray-950 shadow-lg shadow-stone-50/50 rounded-xl w-100 ring-2 ring-white h-115 hover:scale-105 duration-500">
-                <img src="img/catalog.png" alt="" class="w-full h-50 rounded-t-lg">
-                <h1 class="pt-5 pb-2 px-3 text-black my-font-sub text-xl text-center text-white font-semibold">Appliance Catalog</h1>
-                <p class="py-2 px-7 my-font-sub text-sm text-white text-justify">A appliance catalog website that lets users add, view, edit and remove products. The website has a clean and modern design using HTML and Tailwind CSS for styling. For the technical side, I used JavaScript to make the site interactive and PHP to handle data storage and management.</p>
-                <div class="flex justify-between pt-5">
-                    <p class="py-2 px-7 my-font-sub text-sm text-white"><span class="text-mono text-sm"><i class="fa-brands fa-html5 text-white text-xl px-1"></i><i class="fa-brands fa-css3 text-white text-xl px-1"></i><i class="fa-brands fa-php text-white text-xl px-1"></i></span></p>
-                    <div class="px-7">
-                        <a href="#" class="text-white text-capitalize text-sm py-2 px-5 bg-blue-500 rounded-lg my-font-sub font-semibold hover:bg-blue-700 duration-300">View</a>
+            <div class="bg-gray-950 shadow-lg shadow-stone-50/50 rounded-xl ring-2 ring-white hover:scale-105 duration-500 flex flex-col">
+                <img src="img/catalog.png" alt="Appliance Catalog Project" class="w-full h-52 object-cover rounded-t-lg">
+                <div class="p-5 flex flex-col flex-grow">
+                    <h1 class="my-font-sub text-xl text-center text-white font-semibold">Appliance Catalog</h1>
+                    <p class="py-2 my-font-sub text-sm text-white text-justify flex-grow">A appliance catalog website that lets users add, view, edit and remove products. The website has a clean and modern design using HTML and Tailwind CSS for styling. For the technical side, I used JavaScript to make the site interactive and PHP to handle data storage and management.</p>
+                    <div class="flex justify-between items-center mt-4">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-brands fa-html5 text-white text-xl"></i>
+                            <i class="fa-brands fa-css3 text-white text-xl"></i>
+                            <i class="fa-brands fa-php text-white text-xl"></i>
+                        </div>
+                        <a href="#" class="text-white text-capitalize text-sm py-2 px-4 bg-blue-500 rounded-lg my-font-sub font-semibold hover:bg-blue-700 duration-300">View</a>
                     </div>
                 </div>
             </div>
             <!-- Card 2 -->
-            <div class="bg-gray-950 shadow-lg shadow-stone-50/50 rounded-xl w-100 ring-2 ring-white h-115 hover:scale-105 duration-500">
-                <img src="img/medisync.png" alt="" class="w-full h-50 rounded-t-lg">
-                <h1 class="pt-5 pb-2 px-3 text-black my-font-sub text-xl text-center text-white font-semibold">Medisnyc</h1>
-                <p class="py-2 px-7 my-font-sub text-sm text-white text-justify">Medisnyc helps patients easily book doctor appointments online. The website makes scheduling medical consultations quick and simple for both patients and doctors.</p>
-                <div class="flex justify-between pt-15">
-                    <p class="py-2 px-7 my-font-sub text-sm text-white"><span class="text-mono text-sm"><i class="fa-brands fa-html5 text-white text-xl px-1"></i><i class="fa-brands fa-css3 text-white text-xl px-1"></i><i class="fa-brands fa-php text-white text-xl px-1"></i></span></p>
-                    <div class="px-7">
-                        <a href="https://drive.google.com/drive/folders/1Q1-uQS6nyBhfZYOlYIlXrVpua8s2Tfda?usp=drive_link" class="text-white text-capitalize text-sm py-2 px-5 bg-blue-500 rounded-lg my-font-sub font-semibold hover:bg-blue-700 duration-300">View</a>
+            <div class="bg-gray-950 shadow-lg shadow-stone-50/50 rounded-xl ring-2 ring-white hover:scale-105 duration-500 flex flex-col">
+                <img src="img/medisync.png" alt="Medisync Project" class="w-full h-52 object-cover rounded-t-lg">
+                <div class="p-5 flex flex-col flex-grow">
+                    <h1 class="my-font-sub text-xl text-center text-white font-semibold">Medisnyc</h1>
+                    <p class="py-2 my-font-sub text-sm text-white text-justify flex-grow">Medisnyc helps patients easily book doctor appointments online. The website makes scheduling medical consultations quick and simple for both patients and doctors.</p>
+                    <div class="flex justify-between items-center mt-4">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-brands fa-html5 text-white text-xl"></i>
+                            <i class="fa-brands fa-css3 text-white text-xl"></i>
+                            <i class="fa-brands fa-php text-white text-xl"></i>
+                        </div>
+                        <a href="https://drive.google.com/drive/folders/1Q1-uQS6nyBhfZYOlYIlXrVpua8s2Tfda?usp=drive_link" class="text-white text-capitalize text-sm py-2 px-4 bg-blue-500 rounded-lg my-font-sub font-semibold hover:bg-blue-700 duration-300">View</a>
                     </div>
                 </div>
             </div>
             <!-- Card 3 -->
-            <div class="bg-gray-950 shadow-lg shadow-stone-50/50 rounded-xl w-100 ring-2 ring-white h-115 hover:scale-105 duration-500">
-                <img src="img/bakery.png" alt="" class="w-full h-50 rounded-t-lg">
-                <h1 class="pt-5 pb-2 px-3 text-black my-font-sub text-xl text-center text-white font-semibold">Bakeshop and Cafe</h1>
-                <p class="py-2 px-7 my-font-sub text-sm text-white text-justify">A bakeshop and cafe website that showcases delicious pastries and beverages while allowing customers to place orders online. The website features an elegant design with a brown color palette that creates a cozy and rustic atmosphere for visitors to browse the menu and explore our specialty items.</p>
-                <div class="flex justify-between">
-                    <p class="py-2 px-7 my-font-sub text-sm text-white"><span class="text-mono text-sm"><i class="fa-brands fa-html5 text-white text-xl px-1"></i><i class="fa-brands fa-css3 text-white text-xl px-1"></i><i class="fa-brands fa-php text-white text-xl px-1"></i></span></p>
-                    <div class="px-7">
-                        <a href="sampledwork.html" class="text-white text-capitalize text-sm py-2 px-5 bg-blue-500 rounded-lg my-font-sub font-semibold hover:bg-blue-700 duration-300">View</a>
+            <div class="bg-gray-950 shadow-lg shadow-stone-50/50 rounded-xl ring-2 ring-white hover:scale-105 duration-500 flex flex-col">
+                <img src="img/bakery.png" alt="Bakeshop and Cafe Project" class="w-full h-52 object-cover rounded-t-lg">
+                <div class="p-5 flex flex-col flex-grow">
+                    <h1 class="my-font-sub text-xl text-center text-white font-semibold">Bakeshop and Cafe</h1>
+                    <p class="py-2 my-font-sub text-sm text-white text-justify flex-grow">A bakeshop and cafe website that showcases delicious pastries and beverages while allowing customers to place orders online. The website features an elegant design with a brown color palette that creates a cozy and rustic atmosphere for visitors to browse the menu and explore our specialty items.</p>
+                    <div class="flex justify-between items-center mt-4">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-brands fa-html5 text-white text-xl"></i>
+                            <i class="fa-brands fa-css3 text-white text-xl"></i>
+                            <i class="fa-brands fa-php text-white text-xl"></i>
+                        </div>
+                        <a href="sampledwork.html" class="text-white text-capitalize text-sm py-2 px-4 bg-blue-500 rounded-lg my-font-sub font-semibold hover:bg-blue-700 duration-300">View</a>
                     </div>
                 </div>
             </div>
@@ -281,15 +235,13 @@
     </div>
 
     <!-- Footer -->
-    <div class="bg-black py-5 px-3">
-        <div class="px-10 py-5 flex items-center justify-between">
-            <div class="flex items-center">
-                <img src="./img/logo.jpg" alt="" width="90" height="90">
-                <div class="flex pt-5 px-5">
-                    <div>
-                        <h1 class="text-white text-2xl my-font-sub tracking-[2px] font-semibold">Get in <span class="my-color-heading">Touch.</span></h1>
-                        <small class="text-white my-font-sub mt-1">Let's connect! Feel free to reach out through my social media accounts.</small>
-                    </div>
+    <div class="bg-black py-5 px-3 mt-10">
+        <div class="px-4 md:px-10 py-5 flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
+            <div class="flex flex-col sm:flex-row items-center gap-4">
+                <img src="./img/logo.jpg" alt="Logo" width="90" height="90" class="flex-shrink-0">
+                <div>
+                    <h1 class="text-white text-2xl my-font-sub tracking-[2px] font-semibold">Get in <span class="my-color-heading">Touch.</span></h1>
+                    <small class="text-white my-font-sub mt-1">Let's connect! Feel free to reach out through my social media accounts.</small>
                 </div>
             </div>
             <div class="flex space-x-10">
@@ -394,6 +346,25 @@
     }
 
     animate();
+
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menu-btn');
+    const menu = document.getElementById('menu');
+
+    if (menuBtn && menu) {
+        // Toggle menu on button click
+        menuBtn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Hide menu when clicking outside of it
+        document.addEventListener('click', (event) => {
+            if (!menu.classList.contains('hidden') && !menu.contains(event.target) && !menuBtn.contains(event.target)) {
+                menu.classList.add('hidden');
+            }
+        });
+    }
+
   </script>
 </body>
 </html>

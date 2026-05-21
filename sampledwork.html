@@ -40,208 +40,395 @@
         background: #1e1e1e;
         /* Makes canvas transparent */
     }
+
+    /* Custom Scrollbar for Modal */
+    .custom-scrollbar::-webkit-scrollbar {
+        width: 8px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.02);
+        border-radius: 8px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: rgba(157, 208, 180, 0.2);
+        border-radius: 8px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: rgba(157, 208, 180, 0.4);
+    }
+    a:focus, button:focus {
+        outline: 2px solid #9DD0B4;
+        outline-offset: 2px;
+    }
+    a:focus:not(:focus-visible), button:focus:not(:focus-visible) {
+        outline: none;
+    }
+    a:focus-visible, button:focus-visible {
+        outline: 2px solid #9DD0B4;
+        outline-offset: 2px;
+    }
 </style>
 
 <body>
     <canvas id="bg"></canvas>
-    <!-- Top Part -->
-    <nav class="px-4 mx-5 py-5 my-font-sub">
-        <div class="flex items-center justify-between">
-            <a href="index.html" class="flex items-center">
-                <img src="img/logo.jpg" alt="LogoImg" width="90" height="90" class="rounded-full">
-            </a>
-            <!-- Hamburger Menu for mobile -->
-            <div class="md:hidden">
-                <button id="menu-btn" class="text-white focus:outline-none">
-                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M4 6h16M4 12h16m-7 6h7"></path>
-                    </svg>
+
+    <!-- Sticky Glassmorphism Header -->
+    <header class="sticky top-0 z-50 transition-all duration-300 bg-black/20 backdrop-blur-md border-b border-white/5">
+        <nav class="mx-4 md:mx-8 py-4 my-font-sub">
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="flex items-center">
+                    <img src="img/logo.jpg" alt="LogoImg" width="70" height="70" class="rounded-full ring-2 ring-white/20 hover:ring-white/40 transition-all duration-300">
+                </a>
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="index.html" class="relative group text-white font-medium text-lg hover:text-white transition-colors duration-300 py-2">
+                        <span class="relative z-10">Home</span>
+                        <span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-[#9DD0B4] group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    <a href="about.html" class="relative group text-white font-medium text-lg hover:text-white transition-colors duration-300 py-2">
+                        <span class="relative z-10">About Me</span>
+                        <span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-[#9DD0B4] group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    <a href="sampledwork.html" class="relative group text-white font-medium text-lg hover:text-white transition-colors duration-300 py-2">
+                        <span class="relative z-10">Projects</span>
+                        <span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-[#9DD0B4] group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                </div>
+                <!-- Hamburger Menu for mobile -->
+                <button id="menu-btn" class="md:hidden text-white p-2 hover:bg-white/10 rounded-lg transition-colors duration-300">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                 </button>
             </div>
-            <!-- Desktop Menu -->
-            <div class="hidden md:flex items-center space-x-4">
-                <a href="index.html"
-                    class="font-semibold text-lg hover:text-gray-500 transition duration-300 ease-in-out text-white">Home</a>
-                <a href="about.html"
-                    class="font-semibold text-lg hover:text-gray-500 transition duration-300 ease-in-out text-white">About
-                    Me</a>
-                <a href="sampledwork.html"
-                    class="font-semibold text-lg hover:text-gray-500 transition duration-300 ease-in-out text-white">Projects</a>
-            </div>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div id="menu" class="hidden md:hidden fixed top-0 right-0 h-full w-64 bg-gray-900/95 backdrop-blur-md shadow-xl p-5 z-50">
+        <button id="menu-close" class="absolute top-5 right-5 text-white hover:text-[#9DD0B4] transition-colors duration-300">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+        <div class="pt-16 flex flex-col gap-6">
+            <a href="index.html" class="text-right font-semibold text-xl hover:text-[#9DD0B4] transition-colors duration-300 text-white">Home</a>
+            <a href="about.html" class="text-right font-semibold text-xl hover:text-[#9DD0B4] transition-colors duration-300 text-white">About Me</a>
+            <a href="sampledwork.html" class="text-right font-semibold text-xl hover:text-[#9DD0B4] transition-colors duration-300 text-white">Projects</a>
         </div>
-        <!-- Mobile Menu -->
-        <div id="menu"
-            class="hidden md:hidden fixed top-0 right-0 h-full w-64 bg-gray-900 bg-opacity-90 shadow-lg p-5 space-y-4 z-50">
-            <a href="index.html"
-                class="block text-right pt-5 font-semibold text-lg hover:text-gray-400 transition duration-300 ease-in-out text-white">Home</a>
-            <a href="about.html"
-                class="block text-right font-semibold text-lg hover:text-gray-400 transition duration-300 ease-in-out text-white">About
-                Me</a>
-            <a href="sampledwork.html"
-                class="block text-right font-semibold text-lg hover:text-gray-400 transition duration-300 ease-in-out text-white">Projects</a>
-        </div>
-    </nav>
+    </div>
 
     <!-- Middle Part -->
-    <div class="py-10 px-5 md:px-10">
-        <h1
-            class="text-white my-font text-5xl md:text-7xl font-semibold uppercase tracking-[10px] md:tracking-[20px] text-center my-color-heading">
-            Projects</h1>
-        <!-- Card Container -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 my-10 max-w-7xl mx-auto">
-            <!-- Card 1 -->
-            <div
-                class="bg-gray-950 shadow-lg shadow-stone-50/50 rounded-xl ring-2 ring-white hover:scale-105 duration-500 flex flex-col">
-                <img src="img/catalog.png" alt="Appliance Catalog Project"
-                    class="w-full h-52 object-cover rounded-t-xl">
-                <div class="p-5 flex flex-col flex-grow">
-                    <h1 class="my-font-sub text-xl text-center text-white font-semibold">Appliance Catalog</h1>
-                    <p class="py-2 my-font-sub text-sm text-white text-justify flex-grow">A appliance catalog website
-                        that lets users add, view, edit and remove products. The website has a clean and modern design
-                        using HTML and Tailwind CSS for styling. For the technical side, I used JavaScript to make the
-                        site interactive and PHP to handle data storage and management.</p>
-                    <div class="flex justify-between items-center mt-4">
-                        <div class="flex items-center gap-2">
-                            <i class="fa-brands fa-html5 text-white text-xl"></i>
-                            <i class="fa-brands fa-css3-alt text-white text-xl"></i>
-                            <i class="fa-brands fa-php text-white text-xl"></i>
+    <div class="py-16 px-4 relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent via-[#1e1e1e]/30 to-transparent pointer-events-none"></div>
+        <div class="absolute -top-40 -right-40 w-80 h-80 bg-[#9DD0B4] rounded-full blur-[150px] opacity-8"></div>
+        <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-[#9DD0B4] rounded-full blur-[150px] opacity-8"></div>
+        
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="text-center mb-14">
+                <span class="inline-block my-font-sub text-sm tracking-[6px] text-[#9DD0B4] uppercase mb-3">My work</span>
+                <h1 class="text-white my-font text-5xl md:text-7xl font-semibold uppercase tracking-[10px] md:tracking-[20px] my-color-heading">Projects</h1>
+                <div class="w-24 h-0.5 bg-gradient-to-r from-transparent via-[#9DD0B4] to-transparent mx-auto mt-5"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="group relative bg-[#424242]/20 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/5 hover:border-[#9DD0B4]/30 transition-all duration-500 hover:shadow-[0_0_30px_rgba(157,208,180,0.15)] flex flex-col h-full">
+                    <div class="relative h-52 overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#1e1e1e] via-transparent to-transparent z-10"></div>
+                        <img src="img/InventorySystemGnet.png" alt="Inventory Management System" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute top-4 right-4 z-20">
+                            <span class="px-3 py-1 rounded-full bg-[#9DD0B4]/20 text-[#9DD0B4] text-xs my-font-sub border border-[#9DD0B4]/30">Web App</span>
                         </div>
-                        <a href="https://drive.google.com/drive/folders/1eLs078B1w7nmRaUPcsi5XpEV650HvJkD?usp=drive_link"
-                            class="text-white text-capitalize text-sm py-2 px-4 bg-blue-500 rounded-lg my-font-sub font-semibold hover:bg-blue-700 duration-300">View</a>
+                    </div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <h3 class="my-font-sub text-xl text-white font-semibold mb-3 group-hover:text-[#9DD0B4] transition-colors">Inventory Management System</h3>
+                        <p class="my-font-sub text-sm text-gray-400 text-justify leading-relaxed min-h-[4.5rem]">A comprehensive inventory management system for NBP/GovNet that tracks assets, monitors stock levels, and provides real-time dashboard analytics. Features include asset registration, stock movement tracking, and financial summaries.</p>
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            <span class="px-3 py-1 rounded-md bg-[#E44D26]/10 text-[#E44D26] text-xs my-font-sub border border-[#E44D26]/20">HTML</span>
+                            <span class="px-3 py-1 rounded-md bg-[#38BDF8]/10 text-[#38BDF8] text-xs my-font-sub border border-[#38BDF8]/20">Tailwind</span>
+                            <span class="px-3 py-1 rounded-md bg-[#3B82F6]/10 text-[#3B82F6] text-xs my-font-sub border border-[#3B82F6]/20">JavaScript</span>
+                            <span class="px-3 py-1 rounded-md bg-[#4285F4]/10 text-[#4285F4] text-xs my-font-sub border border-[#4285F4]/20">Google Apps Script</span>
+                        </div>
+                        <a href="https://inventory-system-gnet.vercel.app/" class="inline-flex items-center gap-2 mt-auto pt-5 text-white my-font-sub text-sm font-semibold group-hover:text-[#9DD0B4] transition-colors">
+                            View Project
+                            <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                        </a>
                     </div>
                 </div>
-            </div>
-            <!-- Card 2 -->
-            <div
-                class="bg-gray-950 shadow-lg shadow-stone-50/50 rounded-xl ring-2 ring-white hover:scale-105 duration-500 flex flex-col">
-                <img src="img/medisync.png" alt="Medisync Project" class="w-full h-52 object-cover rounded-t-xl">
-                <div class="p-5 flex flex-col flex-grow">
-                    <h1 class="my-font-sub text-xl text-center text-white font-semibold">Medisnyc</h1>
-                    <p class="py-2 my-font-sub text-sm text-white text-justify flex-grow">Medisnyc helps patients easily
-                        book doctor appointments online. The website makes scheduling medical consultations quick and
-                        simple for both patients and doctors.</p>
-                    <div class="flex justify-between items-center mt-4">
-                        <div class="flex items-center gap-2">
-                            <i class="fa-brands fa-html5 text-white text-xl"></i>
-                            <i class="fa-brands fa-css3-alt text-white text-xl"></i>
-                            <i class="fa-brands fa-php text-white text-xl"></i>
+                
+                <!-- Card 2 -->
+                <div class="group relative bg-[#424242]/20 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/5 hover:border-[#9DD0B4]/30 transition-all duration-500 hover:shadow-[0_0_30px_rgba(157,208,180,0.15)] flex flex-col h-full">
+                    <div class="relative h-52 overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#1e1e1e] via-transparent to-transparent z-10"></div>
+                        <img src="img/SamokiValleyPOS.png" alt="Samoki Valley POS System" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute top-4 right-4 z-20">
+                            <span class="px-3 py-1 rounded-full bg-[#9DD0B4]/20 text-[#9DD0B4] text-xs my-font-sub border border-[#9DD0B4]/30">Web App</span>
                         </div>
-                        <a href="https://drive.google.com/drive/folders/1Q1-uQS6nyBhfZYOlYIlXrVpua8s2Tfda?usp=drive_link"
-                            class="text-white text-capitalize text-sm py-2 px-4 bg-blue-500 rounded-lg my-font-sub font-semibold hover:bg-blue-700 duration-300">View</a>
+                    </div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <h3 class="my-font-sub text-xl text-white font-semibold mb-3 group-hover:text-[#9DD0B4] transition-colors">Samoki Valley POS System</h3>
+                        <p class="my-font-sub text-sm text-gray-400 text-justify leading-relaxed min-h-[4.5rem]">A modern point-of-sale system for Samoki Valley with real-time sales tracking, revenue analytics, and transaction management. Features include dashboard overview, sales trends, and profit monitoring.</p>
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            <span class="px-3 py-1 rounded-md bg-[#13aa52]/10 text-[#13aa52] text-xs my-font-sub border border-[#13aa52]/20">MongoDB</span>
+                            <span class="px-3 py-1 rounded-md bg-[#68A063]/10 text-[#68A063] text-xs my-font-sub border border-[#68A063]/20">ExpressJS</span>
+                            <span class="px-3 py-1 rounded-md bg-[#61DAFB]/10 text-[#61DAFB] text-xs my-font-sub border border-[#61DAFB]/20">React</span>
+                            <span class="px-3 py-1 rounded-md bg-[#339933]/10 text-[#339933] text-xs my-font-sub border border-[#339933]/20">NodeJS</span>
+                            <span class="px-3 py-1 rounded-md bg-[#38BDF8]/10 text-[#38BDF8] text-xs my-font-sub border border-[#38BDF8]/20">Tailwind CSS</span>
+                        </div>
+                        <a href="https://pos-system-psi-teal.vercel.app/" class="inline-flex items-center gap-2 mt-auto pt-5 text-white my-font-sub text-sm font-semibold group-hover:text-[#9DD0B4] transition-colors">
+                            View Project
+                            <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                        </a>
                     </div>
                 </div>
-            </div>
-            <!-- Card 3 -->
-            <div
-                class="bg-gray-950 shadow-lg shadow-stone-50/50 rounded-xl ring-2 ring-white hover:scale-105 duration-500 flex flex-col">
-                <img src="img/bakery.png" alt="Bakeshop and Cafe Project" class="w-full h-52 object-cover rounded-t-xl">
-                <div class="p-5 flex flex-col flex-grow">
-                    <h1 class="my-font-sub text-xl text-center text-white font-semibold">Bakeshop and Cafe</h1>
-                    <p class="py-2 my-font-sub text-sm text-white text-justify flex-grow">A bakeshop and cafe website
-                        that showcases delicious pastries and beverages while allowing customers to place orders online.
-                        The website features an elegant design with a brown color palette that creates a cozy and rustic
-                        atmosphere for visitors to browse the menu and explore our specialty items.</p>
-                    <div class="flex justify-between items-center mt-4">
-                        <div class="flex items-center gap-2">
-                            <i class="fa-brands fa-html5 text-white text-xl"></i>
-                            <i class="fa-brands fa-css3-alt text-white text-xl"></i>
-                            <i class="fa-brands fa-php text-white text-xl"></i>
+                
+                <!-- Card 3 -->
+                <div class="group relative bg-[#424242]/20 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/5 hover:border-[#9DD0B4]/30 transition-all duration-500 hover:shadow-[0_0_30px_rgba(157,208,180,0.15)] flex flex-col h-full">
+                    <div class="relative h-52 overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#1e1e1e] via-transparent to-transparent z-10"></div>
+                        <img src="img/MioymEquities.png" alt="Mioym Equities Webinar System" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute top-4 right-4 z-20">
+                            <span class="px-3 py-1 rounded-full bg-[#9DD0B4]/20 text-[#9DD0B4] text-xs my-font-sub border border-[#9DD0B4]/30">Web App</span>
                         </div>
-                        <a href="https://drive.google.com/drive/folders/1ru6JwlH-6gZNJvxGYViiIipIdg_-8qbl?usp=drive_link"
-                            class="text-white text-capitalize text-sm py-2 px-4 bg-blue-500 rounded-lg my-font-sub font-semibold hover:bg-blue-700 duration-300">View</a>
+                    </div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <h3 class="my-font-sub text-xl text-white font-semibold mb-3 group-hover:text-[#9DD0B4] transition-colors">Mioym Equities Webinar System</h3>
+                        <p class="my-font-sub text-sm text-gray-400 text-justify leading-relaxed min-h-[4.5rem]">A professional webinar platform for Mioym Equities showcasing investment opportunities. Features include event registration, countdown timers, and detailed investment presentations for accredited investors.</p>
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            <span class="px-3 py-1 rounded-md bg-[#E44D26]/10 text-[#E44D26] text-xs my-font-sub border border-[#E44D26]/20">HTML</span>
+                            <span class="px-3 py-1 rounded-md bg-[#38BDF8]/10 text-[#38BDF8] text-xs my-font-sub border border-[#38BDF8]/20">Tailwind</span>
+                            <span class="px-3 py-1 rounded-md bg-[#3B82F6]/10 text-[#3B82F6] text-xs my-font-sub border border-[#3B82F6]/20">JavaScript</span>
+                            <span class="px-3 py-1 rounded-md bg-[#777BB4]/10 text-[#777BB4] text-xs my-font-sub border border-[#777BB4]/20">PHP</span>
+                        </div>
+                        <a href="https://mioymequities.com" class="inline-flex items-center gap-2 mt-auto pt-5 text-white my-font-sub text-sm font-semibold group-hover:text-[#9DD0B4] transition-colors">
+                            View Project
+                            <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                        </a>
                     </div>
                 </div>
-            </div>
-            <!-- Card 4 -->
-            <div
-                class="bg-gray-950 shadow-lg shadow-stone-50/50 rounded-xl ring-2 ring-white hover:scale-105 duration-500 flex flex-col">
-                <img src="img/website1.png" alt="Mystique Crochet Project"
-                    class="w-full h-52 object-cover rounded-t-xl">
-                <div class="p-5 flex flex-col flex-grow">
-                    <h1 class="my-font-sub text-xl text-center text-white font-semibold">Mystique Crochet</h1>
-                    <p class="py-2 my-font-sub text-sm text-white text-justify flex-grow">Mystique Crochet is a charming
-                        website dedicated to handmade crochet creations. Featuring a modern look built with HTML5 and
-                        CSS3, the site includes product galleries. Customers can easily browse collections, view the
-                        testimonials of the customers.</p>
-                    <div class="flex justify-between items-center mt-4">
-                        <div class="flex items-center gap-2">
-                            <i class="fa-brands fa-html5 text-white text-xl"></i>
-                            <i class="fa-brands fa-css3-alt text-white text-xl"></i>
+                
+                <!-- Card 4 -->
+                <div class="group relative bg-[#424242]/20 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/5 hover:border-[#9DD0B4]/30 transition-all duration-500 hover:shadow-[0_0_30px_rgba(157,208,180,0.15)] flex flex-col h-full">
+                    <div class="relative h-52 overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#1e1e1e] via-transparent to-transparent z-10"></div>
+                        <img src="img/medisync.png" alt="Medisync Project" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute top-4 right-4 z-20">
+                            <span class="px-3 py-1 rounded-full bg-[#9DD0B4]/20 text-[#9DD0B4] text-xs my-font-sub border border-[#9DD0B4]/30">Web App</span>
                         </div>
-                        <a href="https://drive.google.com/drive/folders/15XNAXH3vt5DfDPSR-T4p9en2jdoy9KJw?usp=drive_link"
-                            class="text-white text-capitalize text-sm py-2 px-4 bg-blue-500 rounded-lg my-font-sub font-semibold hover:bg-blue-700 duration-300">View</a>
+                    </div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <h3 class="my-font-sub text-xl text-white font-semibold mb-3 group-hover:text-[#9DD0B4] transition-colors">Medisync</h3>
+                        <p class="my-font-sub text-sm text-gray-400 text-justify leading-relaxed min-h-[4.5rem]">Medisync helps patients easily book doctor appointments online. The website makes scheduling medical consultations quick and simple for both patients and doctors.</p>
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            <span class="px-3 py-1 rounded-md bg-[#E44D26]/10 text-[#E44D26] text-xs my-font-sub border border-[#E44D26]/20">HTML</span>
+                            <span class="px-3 py-1 rounded-md bg-[#1572B6]/10 text-[#1572B6] text-xs my-font-sub border border-[#1572B6]/20">CSS</span>
+                            <span class="px-3 py-1 rounded-md bg-[#777BB4]/10 text-[#777BB4] text-xs my-font-sub border border-[#777BB4]/20">PHP</span>
+                        </div>
+                        <a href="https://drive.google.com/drive/folders/1Q1-uQS6nyBhfZYOlYIlXrVpua8s2Tfda?usp=drive_link" class="inline-flex items-center gap-2 mt-auto pt-5 text-white my-font-sub text-sm font-semibold group-hover:text-[#9DD0B4] transition-colors">
+                            View Project
+                            <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                        </a>
                     </div>
                 </div>
-            </div>
-            <!-- Card 5 -->
-            <div
-                class="bg-gray-950 shadow-lg shadow-stone-50/50 rounded-xl ring-2 ring-white hover:scale-105 duration-500 flex flex-col">
-                <img src="img/andriod.png" alt="Kain Tayo Android App" class="w-full h-52 object-cover rounded-t-xl">
-                <div class="p-5 flex flex-col flex-grow">
-                    <h1 class="my-font-sub text-xl text-center text-white font-semibold">Kain Tayo</h1>
-                    <p class="py-2 my-font-sub text-sm text-white text-justify flex-grow">Kain Tayo is a user-friendly
-                        food recipe app that helps you find delicious meals to cook at home. You can easily search and
-                        browse through recipes to find something tasty to make. Built with Java programming language
-                        using Android Studio, this simple app makes cooking fun.</p>
-                    <div class="flex justify-between items-center mt-4">
-                        <div class="flex items-center gap-2">
-                            <i class="fa-brands fa-java text-white text-xl"></i>
-                            <i class="fa-brands fa-android text-white text-xl"></i>
+                
+                <!-- Card 5 -->
+                <div class="group relative bg-[#424242]/20 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/5 hover:border-[#9DD0B4]/30 transition-all duration-500 hover:shadow-[0_0_30px_rgba(157,208,180,0.15)] flex flex-col h-full">
+                    <div class="relative h-52 overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#1e1e1e] via-transparent to-transparent z-10"></div>
+                        <img src="img/bakery.png" alt="Bakeshop and Cafe Project" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute top-4 right-4 z-20">
+                            <span class="px-3 py-1 rounded-full bg-[#9DD0B4]/20 text-[#9DD0B4] text-xs my-font-sub border border-[#9DD0B4]/30">E-Commerce</span>
                         </div>
-                        <a href="https://drive.google.com/drive/folders/1NI8Ye57wXnX2rKqda6TWaw7SeDmMkg4e?usp=drive_link"
-                            class="text-white text-capitalize text-sm py-2 px-4 bg-blue-500 rounded-lg my-font-sub font-semibold hover:bg-blue-700 duration-300">View</a>
+                    </div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <h3 class="my-font-sub text-xl text-white font-semibold mb-3 group-hover:text-[#9DD0B4] transition-colors">Bakeshop and Cafe</h3>
+                        <p class="my-font-sub text-sm text-gray-400 text-justify leading-relaxed min-h-[4.5rem]">A bakeshop and cafe website that showcases delicious pastries and beverages while allowing customers to place orders online.</p>
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            <span class="px-3 py-1 rounded-md bg-[#E44D26]/10 text-[#E44D26] text-xs my-font-sub border border-[#E44D26]/20">HTML</span>
+                            <span class="px-3 py-1 rounded-md bg-[#1572B6]/10 text-[#1572B6] text-xs my-font-sub border border-[#1572B6]/20">CSS</span>
+                            <span class="px-3 py-1 rounded-md bg-[#777BB4]/10 text-[#777BB4] text-xs my-font-sub border border-[#777BB4]/20">PHP</span>
+                        </div>
+                        <a href="https://drive.google.com/drive/folders/1ru6JwlH-6gZNJvxGYViiIipIdg_-8qbl?usp=drive_link" class="inline-flex items-center gap-2 mt-auto pt-5 text-white my-font-sub text-sm font-semibold group-hover:text-[#9DD0B4] transition-colors">
+                            View Project
+                            <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                        </a>
                     </div>
                 </div>
-            </div>
-            <!-- Card 6 -->
-            <div
-                class="bg-gray-950 shadow-lg shadow-stone-50/50 rounded-xl ring-2 ring-white hover:scale-105 duration-500 flex flex-col">
-                <img src="img/lelos.png" alt="Lelo's Resort Project" class="w-full h-52 object-cover rounded-t-xl">
-                <div class="p-5 flex flex-col flex-grow">
-                    <h1 class="my-font-sub text-xl text-center text-white font-semibold">Lelo's Resort: Reservation and
-                        Management System</h1>
-                    <p class="py-2 my-font-sub text-sm text-white text-justify flex-grow">A user-friendly reservation
-                        and management system for Lelo's Resort. This system is designed to allow customers to easily
-                        book reservations online, enhancing their experience with the resort's services. It is built
-                        using HTML, Bootstrap, Laravel, and MySQL.</p>
-                    <div class="flex justify-between items-center mt-4">
-                        <div class="flex items-center gap-2">
-                            <i class="fa-brands fa-html5 text-white text-xl"></i>
-                            <i class="fa-brands fa-bootstrap text-white text-xl"></i>
-                            <i class="fa-brands fa-laravel text-white text-xl"></i>
+                
+                <!-- Card 6 -->
+                <div class="group relative bg-[#424242]/20 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/5 hover:border-[#9DD0B4]/30 transition-all duration-500 hover:shadow-[0_0_30px_rgba(157,208,180,0.15)] flex flex-col h-full">
+                    <div class="relative h-52 overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#1e1e1e] via-transparent to-transparent z-10"></div>
+                        <img src="img/website1.png" alt="Mystique Crochet Project" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute top-4 right-4 z-20">
+                            <span class="px-3 py-1 rounded-full bg-[#9DD0B4]/20 text-[#9DD0B4] text-xs my-font-sub border border-[#9DD0B4]/30">Web App</span>
                         </div>
-                        <a href="https://drive.google.com/drive/folders/1NI8Ye57wXnX2rKqda6TWaw7SeDmMkg4e?usp=drive_link"
-                            class="text-white text-capitalize text-sm py-2 px-4 bg-blue-500 rounded-lg my-font-sub font-semibold hover:bg-blue-700 duration-300">View</a>
+                    </div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <h3 class="my-font-sub text-xl text-white font-semibold mb-3 group-hover:text-[#9DD0B4] transition-colors">Mystique Crochet</h3>
+                        <p class="my-font-sub text-sm text-gray-400 text-justify leading-relaxed min-h-[4.5rem]">Mystique Crochet is a charming website dedicated to handmade crochet creations. Featuring a modern look built with HTML5 and CSS3.</p>
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            <span class="px-3 py-1 rounded-md bg-[#E44D26]/10 text-[#E44D26] text-xs my-font-sub border border-[#E44D26]/20">HTML</span>
+                            <span class="px-3 py-1 rounded-md bg-[#1572B6]/10 text-[#1572B6] text-xs my-font-sub border border-[#1572B6]/20">CSS</span>
+                        </div>
+                        <a href="https://drive.google.com/drive/folders/15XNAXH3vt5DfDPSR-T4p9en2jdoy9KJw?usp=drive_link" class="inline-flex items-center gap-2 mt-auto pt-5 text-white my-font-sub text-sm font-semibold group-hover:text-[#9DD0B4] transition-colors">
+                            View Project
+                            <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                        </a>
                     </div>
                 </div>
-            </div>
-
-            <!-- Card 7 -->
-            <div
-                class="bg-gray-950 shadow-lg shadow-stone-50/50 rounded-xl ring-2 ring-white hover:scale-105 duration-500 flex flex-col">
-                <img src="img/coffeeChapter.png" alt="Lelo's Resort Project"
-                    class="w-full h-52 object-cover rounded-t-xl">
-                <div class="p-5 flex flex-col flex-grow">
-                    <h1 class="my-font-sub text-xl text-center text-white font-semibold">Coffee Chapter</h1>
-                    <p class="py-2 my-font-sub text-sm text-white text-justify flex-grow">This project is about making a
-                        simple, easy-to-use website for a coffee shop called Coffee Chapter. It is a static website,
-                        which means it loads very fast. I built the whole thing just using HTML for the words and
-                        structure, and CSS for making it look nice and inviting
-                    </p>
-                    <div class="flex justify-between items-center mt-4">
-                        <div class="flex items-center gap-2">
-                            <i class="fa-brands fa-html5 text-white text-xl"></i>
-                            <i class="fa-brands fa-css3 text-white text-xl"></i>
+                
+                <!-- Card 7 -->
+                <div class="group relative bg-[#424242]/20 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/5 hover:border-[#9DD0B4]/30 transition-all duration-500 hover:shadow-[0_0_30px_rgba(157,208,180,0.15)] flex flex-col h-full">
+                    <div class="relative h-52 overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#1e1e1e] via-transparent to-transparent z-10"></div>
+                        <img src="img/Screenshot 2026-04-08 205629.png" alt="Capture The Flag" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute top-4 right-4 z-20">
+                            <span class="px-3 py-1 rounded-full bg-[#FF2D20]/20 text-[#FF2D20] text-xs my-font-sub border border-[#FF2D20]/30">Web App</span>
                         </div>
-                        <a href="https://coffee-chapter.vercel.app"
-                            class="text-white text-capitalize text-sm py-2 px-4 bg-blue-500 rounded-lg my-font-sub font-semibold hover:bg-blue-700 duration-300">View</a>
+                    </div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <h3 class="my-font-sub text-xl text-white font-semibold mb-3 group-hover:text-[#9DD0B4] transition-colors">Capture The Flag</h3>
+                        <p class="my-font-sub text-sm text-gray-400 text-justify leading-relaxed min-h-[4.5rem]">A Capture The Flag (CTF) platform designed to master cybersecurity challenges. Users can tackle various tasks from beginner to pro levels and earn points.</p>
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            <span class="px-3 py-1 rounded-md bg-[#FF2D20]/10 text-[#FF2D20] text-xs my-font-sub border border-[#FF2D20]/20">Laravel</span>
+                            <span class="px-3 py-1 rounded-md bg-[#E34F26]/10 text-[#E34F26] text-xs my-font-sub border border-[#E34F26]/20">HTML</span>
+                            <span class="px-3 py-1 rounded-md bg-[#06B6D4]/10 text-[#06B6D4] text-xs my-font-sub border border-[#06B6D4]/20">Tailwind CSS</span>
+                        </div>
+                        <a href="#" onclick="openCTFModal(event)" class="inline-flex items-center gap-2 mt-auto pt-5 text-white my-font-sub text-sm font-semibold group-hover:text-[#9DD0B4] transition-colors cursor-pointer">
+                            View Project
+                            <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Card 8 -->
+                <div class="group relative bg-[#424242]/20 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/5 hover:border-[#9DD0B4]/30 transition-all duration-500 hover:shadow-[0_0_30px_rgba(157,208,180,0.15)] flex flex-col h-full">
+                    <div class="relative h-52 overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#1e1e1e] via-transparent to-transparent z-10"></div>
+                        <img src="img/lelos.png" alt="Lelo's Resort Project" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute top-4 right-4 z-20">
+                            <span class="px-3 py-1 rounded-full bg-[#9DD0B4]/20 text-[#9DD0B4] text-xs my-font-sub border border-[#9DD0B4]/30">Web App</span>
+                        </div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <h3 class="my-font-sub text-xl text-white font-semibold mb-3 group-hover:text-[#9DD0B4] transition-colors">Lelo's Resort</h3>
+                        <p class="my-font-sub text-sm text-gray-400 text-justify leading-relaxed min-h-[4.5rem]">A user-friendly reservation and management system for Lelo's Resort. Built using HTML, Bootstrap, Laravel, and MySQL.</p>
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            <span class="px-3 py-1 rounded-md bg-[#E44D26]/10 text-[#E44D26] text-xs my-font-sub border border-[#E44D26]/20">HTML</span>
+                            <span class="px-3 py-1 rounded-md bg-[#7952B3]/10 text-[#7952B3] text-xs my-font-sub border border-[#7952B3]/20">Bootstrap</span>
+                            <span class="px-3 py-1 rounded-md bg-[#FF2D20]/10 text-[#FF2D20] text-xs my-font-sub border border-[#FF2D20]/20">Laravel</span>
+                        </div>
+                        <a href="https://drive.google.com/drive/folders/1NI8Ye57wXnX2rKqda6TWaw7SeDmMkg4e?usp=drive_link" class="inline-flex items-center gap-2 mt-auto pt-5 text-white my-font-sub text-sm font-semibold group-hover:text-[#9DD0B4] transition-colors">
+                            View Project
+                            <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Card 9 -->
+                <div class="group relative bg-[#424242]/20 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/5 hover:border-[#9DD0B4]/30 transition-all duration-500 hover:shadow-[0_0_30px_rgba(157,208,180,0.15)] flex flex-col h-full">
+                    <div class="relative h-52 overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#1e1e1e] via-transparent to-transparent z-10"></div>
+                        <img src="img/coffeeChapter.png" alt="Coffee Chapter Project" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute top-4 right-4 z-20">
+                            <span class="px-3 py-1 rounded-full bg-[#9DD0B4]/20 text-[#9DD0B4] text-xs my-font-sub border border-[#9DD0B4]/30">Website</span>
+                        </div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <h3 class="my-font-sub text-xl text-white font-semibold mb-3 group-hover:text-[#9DD0B4] transition-colors">Coffee Chapter</h3>
+                        <p class="my-font-sub text-sm text-gray-400 text-justify leading-relaxed min-h-[4.5rem]">A simple, easy-to-use website for a coffee shop called Coffee Chapter. A static website that loads very fast using HTML and CSS.</p>
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            <span class="px-3 py-1 rounded-md bg-[#E44D26]/10 text-[#E44D26] text-xs my-font-sub border border-[#E44D26]/20">HTML</span>
+                            <span class="px-3 py-1 rounded-md bg-[#1572B6]/10 text-[#1572B6] text-xs my-font-sub border border-[#1572B6]/20">CSS</span>
+                        </div>
+                        <a href="https://coffee-chapter.vercel.app" class="inline-flex items-center gap-2 mt-auto pt-5 text-white my-font-sub text-sm font-semibold group-hover:text-[#9DD0B4] transition-colors">
+                            View Project
+                            <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Card 10 -->
+                <div class="group relative bg-[#424242]/20 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/5 hover:border-[#9DD0B4]/30 transition-all duration-500 hover:shadow-[0_0_30px_rgba(157,208,180,0.15)] flex flex-col h-full">
+                    <div class="relative h-52 overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#1e1e1e] via-transparent to-transparent z-10"></div>
+                        <img src="img/catalog.png" alt="Appliance Catalog Project" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute top-4 right-4 z-20">
+                            <span class="px-3 py-1 rounded-full bg-[#9DD0B4]/20 text-[#9DD0B4] text-xs my-font-sub border border-[#9DD0B4]/30">Web App</span>
+                        </div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <h3 class="my-font-sub text-xl text-white font-semibold mb-3 group-hover:text-[#9DD0B4] transition-colors">Appliance Catalog</h3>
+                        <p class="my-font-sub text-sm text-gray-400 text-justify leading-relaxed min-h-[4.5rem]">A appliance catalog website that lets users add, view, edit and remove products. The website has a clean and modern design using HTML and Tailwind CSS for styling.</p>
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            <span class="px-3 py-1 rounded-md bg-[#E44D26]/10 text-[#E44D26] text-xs my-font-sub border border-[#E44D26]/20">HTML</span>
+                            <span class="px-3 py-1 rounded-md bg-[#38BDF8]/10 text-[#38BDF8] text-xs my-font-sub border border-[#38BDF8]/20">Tailwind</span>
+                            <span class="px-3 py-1 rounded-md bg-[#777BB4]/10 text-[#777BB4] text-xs my-font-sub border border-[#777BB4]/20">PHP</span>
+                        </div>
+                        <a href="https://drive.google.com/drive/folders/1eLs078B1w7nmRaUPcsi5XpEV650HvJkD?usp=drive_link" class="inline-flex items-center gap-2 mt-auto pt-5 text-white my-font-sub text-sm font-semibold group-hover:text-[#9DD0B4] transition-colors">
+                            View Project
+                            <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <!-- CTF Screenshots Modal -->
+    <div id="ctfModal" class="fixed inset-0 z-[100] hidden items-start justify-center pt-16 md:pt-24 pb-12 bg-black/80 backdrop-blur-sm opacity-0 transition-opacity duration-300 overflow-y-auto">
+        <div class="relative w-11/12 max-w-6xl bg-[#1e1e1e]/95 backdrop-blur-md rounded-2xl border border-white/10 shadow-[0_0_50px_rgba(157,208,180,0.15)] overflow-hidden transform scale-95 transition-transform duration-300 max-h-[85vh] flex flex-col">
+            <!-- Modal Header -->
+            <div class="flex justify-between items-center p-5 border-b border-white/10 bg-[#252525]/80">
+                <h3 class="my-font-sub text-xl text-white font-semibold flex items-center gap-3">
+                    <span class="w-3 h-3 rounded-full bg-[#FF2D20] shadow-[0_0_10px_rgba(255,45,32,0.5)] animate-pulse"></span>
+                    Capture The Flag <span class="text-gray-400 font-normal text-sm md:text-base hidden sm:inline ml-2">| Project Screenshots</span>
+                </h3>
+                <button onclick="closeCTFModal()" aria-label="Close modal" class="text-gray-400 hover:text-[#FF2D20] bg-white/5 hover:bg-[#FF2D20]/10 rounded-full p-2 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#FF2D20]/50">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <!-- Modal Body (Gallery) -->
+            <div class="p-6 overflow-y-auto custom-scrollbar flex-grow bg-[#1e1e1e]/50">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="group relative rounded-xl overflow-hidden border border-white/10 hover:border-[#9DD0B4]/50 transition-all duration-500 shadow-lg cursor-pointer">
+                        <img src="img/Screenshot 2026-04-08 205629.png" alt="CTF Screenshot 1" class="w-full h-auto transform group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <i class="fas fa-expand text-white text-3xl transform scale-50 group-hover:scale-100 transition-all duration-500 drop-shadow-md"></i>
+                        </div>
+                    </div>
+                    <div class="group relative rounded-xl overflow-hidden border border-white/10 hover:border-[#9DD0B4]/50 transition-all duration-500 shadow-lg cursor-pointer">
+                        <img src="img/Screenshot 2026-04-08 205746.png" alt="CTF Screenshot 2" class="w-full h-auto transform group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <i class="fas fa-expand text-white text-3xl transform scale-50 group-hover:scale-100 transition-all duration-500 drop-shadow-md"></i>
+                        </div>
+                    </div>
+                    <div class="group relative rounded-xl overflow-hidden border border-white/10 hover:border-[#9DD0B4]/50 transition-all duration-500 shadow-lg cursor-pointer">
+                        <img src="img/Screenshot 2026-04-08 205802.png" alt="CTF Screenshot 3" class="w-full h-auto transform group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <i class="fas fa-expand text-white text-3xl transform scale-50 group-hover:scale-100 transition-all duration-500 drop-shadow-md"></i>
+                        </div>
+                    </div>
+                    <div class="group relative rounded-xl overflow-hidden border border-white/10 hover:border-[#9DD0B4]/50 transition-all duration-500 shadow-lg cursor-pointer">
+                        <img src="img/Screenshot 2026-04-08 205815.png" alt="CTF Screenshot 4" class="w-full h-auto transform group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <i class="fas fa-expand text-white text-3xl transform scale-50 group-hover:scale-100 transition-all duration-500 drop-shadow-md"></i>
+                        </div>
+                    </div>
+                    <div class="group relative rounded-xl overflow-hidden border border-white/10 hover:border-[#9DD0B4]/50 transition-all duration-500 shadow-lg cursor-pointer">
+                        <img src="img/Screenshot 2026-04-08 205848.png" alt="CTF Screenshot 5" class="w-full h-auto transform group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <i class="fas fa-expand text-white text-3xl transform scale-50 group-hover:scale-100 transition-all duration-500 drop-shadow-md"></i>
+                        </div>
+                    </div>
+                    <div class="group relative rounded-xl overflow-hidden border border-white/10 hover:border-[#9DD0B4]/50 transition-all duration-500 shadow-lg cursor-pointer">
+                        <img src="img/Screenshot 2026-04-08 205901.png" alt="CTF Screenshot 6" class="w-full h-auto transform group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <i class="fas fa-expand text-white text-3xl transform scale-50 group-hover:scale-100 transition-all duration-500 drop-shadow-md"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Script Section -->
 
     <script>
@@ -333,12 +520,21 @@
 
         const menuBtn = document.getElementById('menu-btn');
         const menu = document.getElementById('menu');
+        const menuClose = document.getElementById('menu-close');
+        const header = document.querySelector('header');
 
         if (menuBtn && menu) {
             // Toggle menu on button click
             menuBtn.addEventListener('click', () => {
                 menu.classList.toggle('hidden');
             });
+
+            // Close menu on X button click
+            if (menuClose) {
+                menuClose.addEventListener('click', () => {
+                    menu.classList.add('hidden');
+                });
+            }
 
             // Hide menu when clicking outside of it
             document.addEventListener('click', (event) => {
@@ -347,6 +543,66 @@
                 }
             });
         }
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            if (header) {
+                if (window.scrollY > 50) {
+                    header.classList.add('bg-black/60', 'backdrop-blur-lg', 'shadow-lg');
+                    header.classList.remove('bg-black/20');
+                } else {
+                    header.classList.remove('bg-black/60', 'backdrop-blur-lg', 'shadow-lg');
+                    header.classList.add('bg-black/20');
+                }
+            }
+        });
+
+        // CTF Modal Logic
+        function openCTFModal(e) {
+            e.preventDefault();
+            const modal = document.getElementById('ctfModal');
+            const modalContent = modal.querySelector('div.relative');
+            
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            // Trigger reflow
+            void modal.offsetWidth;
+            
+            modal.classList.remove('opacity-0');
+            modalContent.classList.remove('scale-95');
+            modalContent.classList.add('scale-100');
+            
+            // Prevent body scrolling
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeCTFModal() {
+            const modal = document.getElementById('ctfModal');
+            const modalContent = modal.querySelector('div.relative');
+            
+            modal.classList.add('opacity-0');
+            modalContent.classList.remove('scale-100');
+            modalContent.classList.add('scale-95');
+            
+            setTimeout(() => {
+                modal.classList.remove('flex');
+                modal.classList.add('hidden');
+                // Restore body scrolling
+                document.body.style.overflow = '';
+            }, 300);
+        }
+
+        // Close modal when clicking outside
+        document.addEventListener('DOMContentLoaded', () => {
+            const modal = document.getElementById('ctfModal');
+            if (modal) {
+                modal.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        closeCTFModal();
+                    }
+                });
+            }
+        });
     </script>
 </body>
 

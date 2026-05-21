@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <title>Portfolio</title>
+    <title>Joshua Domingo</title>
 </head>
 <style>
     .my-font{
@@ -47,190 +47,378 @@
         0% { transform: translateX(0); }
         100% { transform: translateX(-50%); }
     }
+
+    @keyframes fade-in {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .animate-fade-in {
+        animation: fade-in 1s ease-out 0.5s forwards;
+    }
+    a:focus, button:focus {
+        outline: 2px solid #9DD0B4;
+        outline-offset: 2px;
+    }
+    a:focus:not(:focus-visible), button:focus:not(:focus-visible) {
+        outline: none;
+    }
+    a:focus-visible, button:focus-visible {
+        outline: 2px solid #9DD0B4;
+        outline-offset: 2px;
+    }
 </style>
+</head>
 <body>
-    <canvas id="bg"></canvas>
-    <!-- Top Part -->
-    <div class="py-5" style="background-image: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0)), url('./img/Joshua.png'); background-size: cover; background-position: center;">
-        <nav class="px-4 mx-5 py-5 my-font-sub">
-            <div class="flex items-center justify-between">
-                <a href="index.html" class="flex items-center">
-                    <img src="img/logo.jpg" alt="LogoImg" width="90" height="90" class="rounded-full">
-                </a>
-                <!-- Hamburger Menu for mobile -->
-                <div class="md:hidden">
-                    <button id="menu-btn" class="text-white focus:outline-none">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+    <!-- Hero Section with Background Image and Canvas Animation -->
+    <section class="relative min-h-screen overflow-hidden" style="background-image: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.3)), url('./img/bg.png'); background-size: cover; background-position: center; background-attachment: fixed;">
+        <canvas id="bg" class="absolute inset-0 w-full h-full pointer-events-none"></canvas>
+        
+        <!-- Sticky Glassmorphism Header -->
+        <header class="sticky top-0 z-50 transition-all duration-300 bg-black/20 backdrop-blur-md border-b border-white/5">
+            <nav class="mx-4 md:mx-8 py-4 my-font-sub">
+                <div class="flex items-center justify-between">
+                    <a href="index.html" class="flex items-center">
+                        <img src="img/logo.jpg" alt="LogoImg" width="70" height="70" class="rounded-full ring-2 ring-white/20 hover:ring-white/40 transition-all duration-300">
+                    </a>
+                    <!-- Desktop Menu -->
+                    <div class="hidden md:flex items-center gap-8">
+                        <a href="about.html" class="relative group text-white font-medium text-lg hover:text-white transition-colors duration-300 py-2">
+                            <span class="relative z-10">About Me</span>
+                            <span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-[#9DD0B4] group-hover:w-full transition-all duration-300"></span>
+                        </a>
+                        <a href="sampledwork.html" class="relative group text-white font-medium text-lg hover:text-white transition-colors duration-300 py-2">
+                            <span class="relative z-10">Projects</span>
+                            <span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-[#9DD0B4] group-hover:w-full transition-all duration-300"></span>
+                        </a>
+                    </div>
+                    <!-- Hamburger Menu for mobile -->
+                    <button id="menu-btn" class="md:hidden text-white p-2 hover:bg-white/10 rounded-lg transition-colors duration-300">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                     </button>
                 </div>
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex items-center space-x-4">
-                    <a href="about.html" class="font-semibold text-lg hover:text-gray-500 transition duration-300 ease-in-out text-white">About Me</a>
-                    <a href="sampledwork.html" class="font-semibold text-lg hover:text-gray-500 transition duration-300 ease-in-out text-white">Projects</a>
-                </div>
-            </div>
-            <!-- Mobile Menu -->
-            <div id="menu" class="hidden md:hidden fixed top-0 right-0 h-full w-64 bg-gray-900 bg-opacity-90 shadow-lg p-5 space-y-4 z-50">
-                <a href="about.html" class="block text-right pt-5 font-semibold text-lg hover:text-gray-400 transition duration-300 ease-in-out text-white">About Me</a>
-                <a href="sampledwork.html" class="block text-right font-semibold text-lg hover:text-gray-400 transition duration-300 ease-in-out text-white">Projects</a>
-            </div>
-        </nav>
+            </nav>
+        </header>
 
-        <!-- Middle Part -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 px-5 mt-10 mb-20 items-center">
-            <!-- Empty column for spacing on larger screens -->
-            <div class="hidden md:block"></div>
-            <div class="text-white flex flex-col justify-right text-right md:text-left">
-                <h1 class="my-font text-6xl md:text-7xl lg:text-9xl font-semibold my-color-heading tracking-widest">I'm Joshua </h1>
-                <h1 class="my-font text-6xl md:text-7xl lg:text-9xl font-semibold my-color-heading tracking-[20px] lg:tracking-[32px]">Domingo</h1>
-                <div class="flex-col items-center justify-center mt-4">
-                    <p class="my-font-sub text-base md:text-lg text-white max-w-md mx-auto md:mx-0 md:mr-12">I'm a frontend developer, ready to help you grow your business with a website that attracts more clients and increases sales.</p>
-                    <p class="mt-10 mb-5 my-font-sub text-lg font-semibold text-white text-center md:text-left">Socials</p>
-                    <!-- Socials Links -->
-                    <div class="flex space-x-10 justify-center md:justify-start">
-                        <a href="https://web.facebook.com/joshus.domingo" class="group flex justify-center p-2 rounded-md drop-shadow-xl from-gray-800 bg-[#424242] text-white font-semibold hover:translate-y-3 hover:rounded-[50%] transition-all duration-500 hover:from-[#331029] hover:to-[#310413]" >
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30" fill="white">
+        <!-- Mobile Menu -->
+        <div id="menu" class="hidden md:hidden fixed top-0 right-0 h-full w-64 bg-gray-900/95 backdrop-blur-md shadow-xl p-5 z-50">
+            <button id="menu-close" class="absolute top-5 right-5 text-white hover:text-[#9DD0B4] transition-colors duration-300">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <div class="pt-16 flex flex-col gap-6">
+                <a href="about.html" class="text-right font-semibold text-xl hover:text-[#9DD0B4] transition-colors duration-300 text-white">About Me</a>
+                <a href="sampledwork.html" class="text-right font-semibold text-xl hover:text-[#9DD0B4] transition-colors duration-300 text-white">Projects</a>
+            </div>
+        </div>
+        
+        <!-- Hero Content -->
+        <div class="relative min-h-screen flex items-center">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full max-w-7xl mx-auto px-5">
+            <div class="order-2 lg:order-1 text-white flex flex-col">
+                <div class="inline-flex items-center gap-2 mb-4 opacity-0 animate-fade-in">
+                    <span class="h-[2px] w-12 bg-white"></span>
+                    <span class="my-font-sub text-sm text-white font-semibold tracking-widest uppercase">Frontend Developer</span>
+                </div>
+                <h1 class="my-font text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-semibold my-color-heading tracking-widest leading-tight">I'm Joshua</h1>
+                <h1 class="my-font text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-semibold my-color-heading tracking-[12px] lg:tracking-[24px] xl:tracking-[32px] leading-tight">Domingo</h1>
+                <p class="my-font-sub text-base md:text-lg text-gray-300 max-w-lg mt-6 leading-relaxed">I'm a frontend developer, ready to help you grow your business with a website that attracts more clients and increases sales.</p>
+                
+                <div class="mt-10">
+                    <p class="my-font-sub text-sm font-semibold text-gray-400 tracking-widest uppercase mb-4">Connect With Me</p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="https://web.facebook.com/joshus.domingo" class="group relative flex items-center gap-3 px-5 py-3 rounded-full bg-[#424242] bg-opacity-60 backdrop-blur-sm text-white font-semibold hover:bg-[#3b5998] transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#3b5998]/30">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="white">
                                 <circle cx="12" cy="12" r="12" fill="#3b5998"/>
                                 <path d="M15.1 11.25H13.6V18H10.8V11.25H9.4V9H10.8V7.8C10.8 6.7 11.2 6 12.8 6H15V8.25H13.7C13.3 8.25 13.6 8.4 13.6 8.8V9H15.1L15 11.25Z" fill="white"/>
                             </svg>
-                            <span class="absolute opacity-0 text-white group-hover:opacity-100 group-hover:text-white-700 group-hover:text-sm group-hover:-translate-y-10 duration-700">
-                            Facebook
-                            </span>
+                            <span class="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs text-white opacity-0 group-hover:opacity-100 group-hover:-translate-y-1 transition-all duration-300 whitespace-nowrap">Follow me</span>
                         </a>
-                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=jeswaaa1803@gmail.com" class="group flex justify-center p-2 rounded-md drop-shadow-xl from-gray-800 bg-[#424242] text-white font-semibold hover:translate-y-3 hover:rounded-[50%] transition-all duration-500 hover:from-[#331029] hover:to-[#310413]" >
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="30" height="30">
+                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=jeswaaa1803@gmail.com" class="group relative flex items-center gap-3 px-5 py-3 rounded-full bg-[#424242] bg-opacity-60 backdrop-blur-sm text-white font-semibold hover:bg-[#EA4335] transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#EA4335]/30">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="22" height="22">
                                 <path fill="#e53935" d="M44 39c0 2.2-1.8 4-4 4H8c-2.2 0-4-1.8-4-4V15.7l20 13.3 20-13.3V39z"/>
                                 <path fill="#c62828" d="M24 29L4 15.7V9c0-2.2 1.8-4 4-4h32c2.2 0 4 1.8 4 4v6.7L24 29z"/>
                                 <path fill="#fbc02d" d="M44 9v6.7L24 29 4 15.7V9l20 13.3L44 9z"/>
                             </svg>
-
-                            <span class="absolute opacity-0 text-white group-hover:opacity-100 group-hover:text-black-700 group-hover:text-sm group-hover:-translate-y-10 duration-700">
-                            Gmail
-                            </span>
+                            <span class="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs text-white opacity-0 group-hover:opacity-100 group-hover:-translate-y-1 transition-all duration-300 whitespace-nowrap">Email me</span>
                         </a>
-                        <a href="https://github.com/jeswaa" class="group flex justify-center p-2 rounded-md drop-shadow-xl from-gray-800 bg-[#424242] text-white font-semibold hover:translate-y-3 hover:rounded-[50%] transition-all duration-500 hover:from-[#331029] hover:to-[#310413]" >
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" height="30" width="30">
+                        <a href="https://github.com/jeswaa" class="group relative flex items-center gap-3 px-5 py-3 rounded-full bg-[#424242] bg-opacity-60 backdrop-blur-sm text-white font-semibold hover:bg-[#333] transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-white/20">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" height="22" width="22">
                                 <path fill="white" d="M511.6 76.3C269 76.3 69.8 275.5 69.8 518.1c0 195.3 126.6 361.1 302.2 419.6 22.1 4 30.2-9.6 30.2-21.3 0-10.5-.4-45.2-.6-82.1-123.1 22.6-149.1-29.9-158.6-57.4-5-12.6-26.6-51.6-45.4-62.1-15.5-8.1-37.6-28-2.9-28.5 34.9-.5 59.8 32.2 68.1 45.5 39.9 67.4 103.8 48 129.1 36.6 4.1-28.9 15.6-48 28.4-59-109.8-12.5-225.4-54.9-225.4-244.5 0-54 19.3-98.1 51.1-132.7-5.1-12.6-22.1-63.2 4.9-131.8 0 0 41.6-13.3 136.4 50.7 39.6-11 82-16.5 124.2-16.7 42.2.2 84.7 5.7 124.3 16.7 94.6-64 136.2-50.7 136.2-50.7 27.1 68.6 10.1 119.2 5 131.8 31.8 34.5 51.1 78.6 51.1 132.7 0 190.9-115.8 232-225.9 244.2 16 13.8 30.5 41 30.5 82.5 0 59.8-.6 108-1 122.6 0 11.7 8 25.6 30.3 21.2 175.3-58.6 301.6-224.5 301.6-419.6.2-242.6-198.9-441.8-441.4-441.8z"/>
                             </svg>
-                            <span class="absolute opacity-0 text-white group-hover:opacity-100 group-hover:text-white-700 group-hover:text-sm group-hover:-translate-y-10 duration-700">
-                            Github
-                            </span>
-                        </a>
+                             <span class="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs text-white opacity-0 group-hover:opacity-100 group-hover:-translate-y-1 transition-all duration-300 whitespace-nowrap">View profile</span>
+                         </a>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </section>
+     
+     <!-- About Me Section -->
+    <div class="py-16 px-4 relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent via-[#1e1e1e]/50 to-transparent pointer-events-none"></div>
+        <div class="absolute -top-20 -left-20 w-64 h-64 bg-[#9DD0B4] rounded-full blur-[120px] opacity-10"></div>
+        <div class="absolute -bottom-20 -right-20 w-80 h-80 bg-[#9DD0B4] rounded-full blur-[150px] opacity-10"></div>
+        
+        <div class="max-w-6xl mx-auto relative z-10">
+            <div class="text-center mb-16">
+                <span class="inline-block my-font-sub text-sm tracking-[6px] text-[#9DD0B4] uppercase mb-4">Get to know me</span>
+                <h1 class="text-white my-font text-5xl md:text-7xl font-semibold uppercase tracking-[12px] md:tracking-[20px] my-color-heading">Who Am I?</h1>
+                <div class="w-24 h-1 bg-gradient-to-r from-[#9DD0B4] to-transparent mx-auto mt-6"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                <div class="lg:col-span-5 relative">
+                    <div class="relative group">
+                        <div class="absolute inset-0 bg-gradient-to-r from-[#9DD0B4] to-[#6BA88C] rounded-2xl blur-lg opacity-30 group-hover:opacity-50 transition-opacity duration-500"></div>
+                        <div class="relative rounded-2xl overflow-hidden border border-white/10">
+                            <img src="img/main pic.jpg" alt="Joshua Domingo" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                        </div>
                     </div>
-            
+                </div>
+
+                <div class="lg:col-span-7">
+                    <div class="bg-[#424242]/20 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-white/5">
+                        <div class="flex items-start gap-4 mb-6">
+                            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-[#9DD0B4] to-[#6BA88C] flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-user-graduate text-white text-lg"></i>
+                            </div>
+                            <div>
+                                <h3 class="my-font-sub text-xl text-white font-semibold">System Developer</h3>
+                            </div>
+                        </div>
+                        
+                        <p class="text-gray-300 my-font-sub text-base md:text-lg leading-8 tracking-[0.5px] text-justify">
+                            I am <span class="text-[#9DD0B4] font-semibold">Joshua Domingo</span>, a 23-year-old student at PHINMA Araullo University. I am a committed student who wants to become a good front-end developer. My colorful goals and objectives, which I hold dearly, have driven my academic career. 
+                        </p>
+                        <p class="text-gray-300 my-font-sub text-base md:text-lg leading-8 tracking-[0.5px] text-justify mt-4">
+                            I see myself as an <span class="text-[#9DD0B4] font-semibold">expressive person</span> who loves to voice my ideas to people. I enjoy speaking honestly, whether it's to share my opinions on a subject or to articulate concepts for a project.
+                        </p>
+
+                        <div class="flex flex-wrap gap-3 mt-8">
+                            <span class="px-4 py-2 rounded-full bg-[#9DD0B4]/10 text-[#9DD0B4] my-font-sub text-sm border border-[#9DD0B4]/20">Frontend Developer</span>
+                            <span class="px-4 py-2 rounded-full bg-white/5 text-gray-300 my-font-sub text-sm border border-white/10">UI/UX Enthusiast</span>
+                            <span class="px-4 py-2 rounded-full bg-white/5 text-gray-300 my-font-sub text-sm border border-white/10">Creative Thinker</span>
+                        </div>
+
+                        <div class="mt-8 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                            <a href="JoshuaDomingo(Resume).pdf" download class="group relative inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-[#9DD0B4] to-[#7eb39d] text-black font-semibold rounded-xl hover:shadow-lg hover:shadow-[#9DD0B4]/30 transition-all duration-300 hover:-translate-y-1">
+                                <i class="fas fa-download text-black"></i>
+                                <span class="my-font-sub">Download Resume</span>
+                                <span class="absolute inset-0 rounded-xl bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                            </a>
+                            <a href="about.html" class="inline-flex items-center gap-2 text-gray-400 hover:text-[#9DD0B4] transition-colors duration-300 my-font-sub">
+                                <span>Learn more about me</span>
+                                <i class="fas fa-arrow-right text-sm transform group-hover:translate-x-1 transition-transform"></i>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-    
-    <!-- About Me Section -->
-    <div class="flex-column items-center justify-center mt-10  py-10">
-        <h1 class="text-white my-font text-7xl font-semibold uppercase tracking-[20px] text-center my-color-heading py-5">Who Am  I?</h1>
-        <div class="grid grid-cols-1 md:grid-cols-2 my-10 mx-10 gap-5">
-            <img src="img/Joshua.png" alt="" class="w-full rounded-xl mb-5 shadow-lg shadow-stone-50/50">
-            <div>
-                <p class="text-white my-font-sub text-lg mt-5 md:mt-10 mx-5 md:mx-10 leading-7 md:leading-10 tracking-[.5px] text-justify">
-                    I am Joshua Domingo, 22-year-old student at PHINMA Araullo University. I am a committed student who wants to become a good front-end developer. My colorful goals and objectives, which I hold dearly, have driven my academic career. I see myself as an expressive person who loves to voice my ideas to people. I enjoy speaking honestly, whether it's to share my opinions on a subject or to articulate concepts for a project.
-                 </p>
-                <div class="py-5 px-5 flex justify-start md:justify-end md:px-10">
-                    <a href="Joshua Domingo.pdf" download class="bg-slate-700 p-2 rounded-xl text-white text-center hover:bg-[#9dd0b4] hover:text-white ease-in-out flex items-center gap-2" title="Download Resume">
-                        <i class="fas fa-download text-white"></i>
-                        Download Resume
-                    </a>
-                </div>
-            </div> 
         </div>
     </div>
 
     <!-- Caraouserl of Tech Stack-->
-    <div class="carousel-container overflow-hidden mt-10 py-4">
-        <div class="carousel-track flex items-center">
-            <!-- Icons are duplicated for a seamless scroll effect -->
-            <!-- Group 1 -->
-            <div class="flex-shrink-0 flex justify-around items-center gap-x-6 md:gap-x-12 px-6">
-                <i class="fa-brands fa-html5 text-5xl md:text-7xl text-[#E44D26] opacity-60 hover:opacity-100 hover:scale-110 transition-all duration-300"></i>
-                <i class="fa-brands fa-css3-alt text-5xl md:text-7xl text-[#1572B6] opacity-60 hover:opacity-100 hover:scale-110 transition-all duration-300"></i>
-                <i class="fa-brands fa-php text-5xl md:text-7xl text-[#777BB4] opacity-60 hover:opacity-100 hover:scale-110 transition-all duration-300"></i>
-                <i class="fa-brands fa-laravel text-5xl md:text-7xl text-[#FF2D20] opacity-60 hover:opacity-100 hover:scale-110 transition-all duration-300"></i>
-                <svg class="w-16 h-16 md:w-20 md:h-20 opacity-60 hover:opacity-100 hover:scale-110 transition-all duration-300" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path fill="#38BDF8" d="M12 6C9.33333 6 7.66667 7.33333 7 10C8 8.66667 9.16667 8.16667 10.5 8.5C11.2107 8.68947 11.7125 9.19947 12.2728 9.76974C13.2202 10.7272 14.3162 11.8333 16.5 11.8333C19.1667 11.8333 20.8333 10.5 21.5 7.83333C20.5 9.16667 19.3333 9.66667 18 9.33333C17.2893 9.14386 16.7875 8.63386 16.2272 8.06359C15.2798 7.10612 14.1838 6 12 6ZM7.5 12C4.83333 12 3.16667 13.3333 2.5 16C3.5 14.6667 4.66667 14.1667 6 14.5C6.71067 14.6895 7.21251 15.1995 7.77277 15.7697C8.72022 16.7272 9.81619 17.8333 12 17.8333C14.6667 17.8333 16.3333 16.5 17 13.8333C16 15.1667 14.8333 15.6667 13.5 15.3333C12.7893 15.1439 12.2875 14.6339 11.7272 14.0636C10.7798 13.1061 9.68381 12 7.5 12Z"/>
-                </svg>
+    <div class="py-16 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-[#9DD0B4]/5 to-transparent"></div>
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <span class="inline-block my-font-sub text-sm tracking-[6px] text-[#9DD0B4] uppercase mb-3">What I work with</span>
+                <h2 class="text-white my-font text-4xl md:text-6xl font-semibold uppercase tracking-[10px] md:tracking-[16px] my-color-heading">Tech Stack</h2>
+                <div class="w-20 h-0.5 bg-gradient-to-r from-transparent via-[#9DD0B4] to-transparent mx-auto mt-5"></div>
             </div>
-            <!-- Group 2 (Duplicate of Group 1) -->
-            <div class="flex-shrink-0 flex justify-around items-center gap-x-6 md:gap-x-12 px-6">
-                <i class="fa-brands fa-html5 text-5xl md:text-7xl text-[#E44D26] opacity-60 hover:opacity-100 hover:scale-110 transition-all duration-300"></i>
-                <i class="fa-brands fa-css3-alt text-5xl md:text-7xl text-[#1572B6] opacity-60 hover:opacity-100 hover:scale-110 transition-all duration-300"></i>
-                <i class="fa-brands fa-php text-5xl md:text-7xl text-[#777BB4] opacity-60 hover:opacity-100 hover:scale-110 transition-all duration-300"></i>
-                <i class="fa-brands fa-laravel text-5xl md:text-7xl text-[#FF2D20] opacity-60 hover:opacity-100 hover:scale-110 transition-all duration-300"></i>
-                <svg class="w-16 h-16 md:w-20 md:h-20 opacity-60 hover:opacity-100 hover:scale-110 transition-all duration-300" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path fill="#38BDF8" d="M12 6C9.33333 6 7.66667 7.33333 7 10C8 8.66667 9.16667 8.16667 10.5 8.5C11.2107 8.68947 11.7125 9.19947 12.2728 9.76974C13.2202 10.7272 14.3162 11.8333 16.5 11.8333C19.1667 11.8333 20.8333 10.5 21.5 7.83333C20.5 9.16667 19.3333 9.66667 18 9.33333C17.2893 9.14386 16.7875 8.63386 16.2272 8.06359C15.2798 7.10612 14.1838 6 12 6ZM7.5 12C4.83333 12 3.16667 13.3333 2.5 16C3.5 14.6667 4.66667 14.1667 6 14.5C6.71067 14.6895 7.21251 15.1995 7.77277 15.7697C8.72022 16.7272 9.81619 17.8333 12 17.8333C14.6667 17.8333 16.3333 16.5 17 13.8333C16 15.1667 14.8333 15.6667 13.5 15.3333C12.7893 15.1439 12.2875 14.6339 11.7272 14.0636C10.7798 13.1061 9.68381 12 7.5 12Z"/>
-                </svg>
+            
+            <div class="relative group">
+                <div class="absolute top-0 left-0 w-20 h-full bg-gradient-to-r from-[#1e1e1e] to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div class="absolute top-0 right-0 w-20 h-full bg-gradient-to-l from-[#1e1e1e] to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                
+                <div class="carousel-container overflow-hidden py-6">
+                    <div class="carousel-track flex items-center">
+                        <div class="flex-shrink-0 flex justify-around items-center gap-x-8 md:gap-x-16 px-6">
+                            <div class="flex flex-col items-center gap-3 group/item">
+                                <div class="w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-[#424242]/30 backdrop-blur-sm border border-white/5 flex items-center justify-center transition-all duration-300 group-hover/item:bg-[#E44D26]/20 group-hover/item:border-[#E44D26]/30 group-hover/item:scale-110">
+                                    <i class="fa-brands fa-html5 text-4xl md:text-5xl text-[#E44D26]"></i>
+                                </div>
+                                <span class="my-font-sub text-xs text-gray-400 group-hover/item:text-[#E44D26] transition-colors">HTML5</span>
+                            </div>
+                            <div class="flex flex-col items-center gap-3 group/item">
+                                <div class="w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-[#424242]/30 backdrop-blur-sm border border-white/5 flex items-center justify-center transition-all duration-300 group-hover/item:bg-[#1572B6]/20 group-hover/item:border-[#1572B6]/30 group-hover/item:scale-110">
+                                    <i class="fa-brands fa-css3-alt text-4xl md:text-5xl text-[#1572B6]"></i>
+                                </div>
+                                <span class="my-font-sub text-xs text-gray-400 group-hover/item:text-[#1572B6] transition-colors">CSS3</span>
+                            </div>
+                            <div class="flex flex-col items-center gap-3 group/item">
+                                <div class="w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-[#424242]/30 backdrop-blur-sm border border-white/5 flex items-center justify-center transition-all duration-300 group-hover/item:bg-[#F7DF1E]/20 group-hover/item:border-[#F7DF1E]/30 group-hover/item:scale-110">
+                                    <i class="fa-brands fa-js text-4xl md:text-5xl text-[#F7DF1E]"></i>
+                                </div>
+                                <span class="my-font-sub text-xs text-gray-400 group-hover/item:text-[#F7DF1E] transition-colors">JavaScript</span>
+                            </div>
+                            <div class="flex flex-col items-center gap-3 group/item">
+                                <div class="w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-[#424242]/30 backdrop-blur-sm border border-white/5 flex items-center justify-center transition-all duration-300 group-hover/item:bg-[#38BDF8]/20 group-hover/item:border-[#38BDF8]/30 group-hover/item:scale-110">
+                                    <svg class="w-10 h-10 md:w-12 md:h-12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill="#38BDF8" d="M12 6C9.33333 6 7.66667 7.33333 7 10C8 8.66667 9.16667 8.16667 10.5 8.5C11.2107 8.68947 11.7125 9.19947 12.2728 9.76974C13.2202 10.7272 14.3162 11.8333 16.5 11.8333C19.1667 11.8333 20.8333 10.5 21.5 7.83333C20.5 9.16667 19.3333 9.66667 18 9.33333C17.2893 9.14386 16.7875 8.63386 16.2272 8.06359C15.2798 7.10612 14.1838 6 12 6ZM7.5 12C4.83333 12 3.16667 13.3333 2.5 16C3.5 14.6667 4.66667 14.1667 6 14.5C6.71067 14.6895 7.21251 15.1995 7.77277 15.7697C8.72022 16.7272 9.81619 17.8333 12 17.8333C14.6667 17.8333 16.3333 16.5 17 13.8333C16 15.1667 14.8333 15.6667 13.5 15.3333C12.7893 15.1439 12.2875 14.6339 11.7272 14.0636C10.7798 13.1061 9.68381 12 7.5 12Z"/>
+                                    </svg>
+                                </div>
+                                <span class="my-font-sub text-xs text-gray-400 group-hover/item:text-[#38BDF8] transition-colors">Tailwind</span>
+                            </div>
+                            <div class="flex flex-col items-center gap-3 group/item">
+                                <div class="w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-[#424242]/30 backdrop-blur-sm border border-white/5 flex items-center justify-center transition-all duration-300 group-hover/item:bg-[#777BB4]/20 group-hover/item:border-[#777BB4]/30 group-hover/item:scale-110">
+                                    <i class="fa-brands fa-php text-4xl md:text-5xl text-[#777BB4]"></i>
+                                </div>
+                                <span class="my-font-sub text-xs text-gray-400 group-hover/item:text-[#777BB4] transition-colors">PHP</span>
+                            </div>
+                            <div class="flex flex-col items-center gap-3 group/item">
+                                <div class="w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-[#424242]/30 backdrop-blur-sm border border-white/5 flex items-center justify-center transition-all duration-300 group-hover/item:bg-[#FF2D20]/20 group-hover/item:border-[#FF2D20]/30 group-hover/item:scale-110">
+                                    <i class="fa-brands fa-laravel text-4xl md:text-5xl text-[#FF2D20]"></i>
+                                </div>
+                                <span class="my-font-sub text-xs text-gray-400 group-hover/item:text-[#FF2D20] transition-colors">Laravel</span>
+                            </div>
+                        </div>
+                        <div class="flex-shrink-0 flex justify-around items-center gap-x-8 md:gap-x-16 px-6">
+                            <div class="flex flex-col items-center gap-3 group/item">
+                                <div class="w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-[#424242]/30 backdrop-blur-sm border border-white/5 flex items-center justify-center transition-all duration-300 group-hover/item:bg-[#E44D26]/20 group-hover/item:border-[#E44D26]/30 group-hover/item:scale-110">
+                                    <i class="fa-brands fa-html5 text-4xl md:text-5xl text-[#E44D26]"></i>
+                                </div>
+                                <span class="my-font-sub text-xs text-gray-400 group-hover/item:text-[#E44D26] transition-colors">HTML5</span>
+                            </div>
+                            <div class="flex flex-col items-center gap-3 group/item">
+                                <div class="w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-[#424242]/30 backdrop-blur-sm border border-white/5 flex items-center justify-center transition-all duration-300 group-hover/item:bg-[#1572B6]/20 group-hover/item:border-[#1572B6]/30 group-hover/item:scale-110">
+                                    <i class="fa-brands fa-css3-alt text-4xl md:text-5xl text-[#1572B6]"></i>
+                                </div>
+                                <span class="my-font-sub text-xs text-gray-400 group-hover/item:text-[#1572B6] transition-colors">CSS3</span>
+                            </div>
+                            <div class="flex flex-col items-center gap-3 group/item">
+                                <div class="w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-[#424242]/30 backdrop-blur-sm border border-white/5 flex items-center justify-center transition-all duration-300 group-hover/item:bg-[#F7DF1E]/20 group-hover/item:border-[#F7DF1E]/30 group-hover/item:scale-110">
+                                    <i class="fa-brands fa-js text-4xl md:text-5xl text-[#F7DF1E]"></i>
+                                </div>
+                                <span class="my-font-sub text-xs text-gray-400 group-hover/item:text-[#F7DF1E] transition-colors">JavaScript</span>
+                            </div>
+                            <div class="flex flex-col items-center gap-3 group/item">
+                                <div class="w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-[#424242]/30 backdrop-blur-sm border border-white/5 flex items-center justify-center transition-all duration-300 group-hover/item:bg-[#38BDF8]/20 group-hover/item:border-[#38BDF8]/30 group-hover/item:scale-110">
+                                    <svg class="w-10 h-10 md:w-12 md:h-12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill="#38BDF8" d="M12 6C9.33333 6 7.66667 7.33333 7 10C8 8.66667 9.16667 8.16667 10.5 8.5C11.2107 8.68947 11.7125 9.19947 12.2728 9.76974C13.2202 10.7272 14.3162 11.8333 16.5 11.8333C19.1667 11.8333 20.8333 10.5 21.5 7.83333C20.5 9.16667 19.3333 9.66667 18 9.33333C17.2893 9.14386 16.7875 8.63386 16.2272 8.06359C15.2798 7.10612 14.1838 6 12 6ZM7.5 12C4.83333 12 3.16667 13.3333 2.5 16C3.5 14.6667 4.66667 14.1667 6 14.5C6.71067 14.6895 7.21251 15.1995 7.77277 15.7697C8.72022 16.7272 9.81619 17.8333 12 17.8333C14.6667 17.8333 16.3333 16.5 17 13.8333C16 15.1667 14.8333 15.6667 13.5 15.3333C12.7893 15.1439 12.2875 14.6339 11.7272 14.0636C10.7798 13.1061 9.68381 12 7.5 12Z"/>
+                                    </svg>
+                                </div>
+                                <span class="my-font-sub text-xs text-gray-400 group-hover/item:text-[#38BDF8] transition-colors">Tailwind</span>
+                            </div>
+                            <div class="flex flex-col items-center gap-3 group/item">
+                                <div class="w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-[#424242]/30 backdrop-blur-sm border border-white/5 flex items-center justify-center transition-all duration-300 group-hover/item:bg-[#777BB4]/20 group-hover/item:border-[#777BB4]/30 group-hover/item:scale-110">
+                                    <i class="fa-brands fa-php text-4xl md:text-5xl text-[#777BB4]"></i>
+                                </div>
+                                <span class="my-font-sub text-xs text-gray-400 group-hover/item:text-[#777BB4] transition-colors">PHP</span>
+                            </div>
+                            <div class="flex flex-col items-center gap-3 group/item">
+                                <div class="w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-[#424242]/30 backdrop-blur-sm border border-white/5 flex items-center justify-center transition-all duration-300 group-hover/item:bg-[#FF2D20]/20 group-hover/item:border-[#FF2D20]/30 group-hover/item:scale-110">
+                                    <i class="fa-brands fa-laravel text-4xl md:text-5xl text-[#FF2D20]"></i>
+                                </div>
+                                <span class="my-font-sub text-xs text-gray-400 group-hover/item:text-[#FF2D20] transition-colors">Laravel</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     
     <!-- Project Section -->
-    <div class=" py-5 px-5">
-         <h1 class="text-white my-font text-5xl md:text-7xl font-semibold uppercase tracking-[10px] md:tracking-[20px] text-center my-color-heading">Projects</h1>
-         <!-- Card -->
-         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 px-5 my-10 mx-auto max-w-7xl">
-            <!-- Card 1 -->
-            <div class="bg-gray-950 shadow-lg shadow-stone-50/50 rounded-xl ring-2 ring-white hover:scale-105 duration-500 flex flex-col">
-                <img src="img/catalog.png" alt="Appliance Catalog Project" class="w-full h-52 object-cover rounded-t-lg">
-                <div class="p-5 flex flex-col flex-grow">
-                    <h1 class="my-font-sub text-xl text-center text-white font-semibold">Appliance Catalog</h1>
-                    <p class="py-2 my-font-sub text-sm text-white text-justify flex-grow">A appliance catalog website that lets users add, view, edit and remove products. The website has a clean and modern design using HTML and Tailwind CSS for styling. For the technical side, I used JavaScript to make the site interactive and PHP to handle data storage and management.</p>
-                    <div class="flex justify-between items-center mt-4">
-                        <div class="flex items-center gap-2">
-                            <i class="fa-brands fa-html5 text-white text-xl"></i>
-                            <i class="fa-brands fa-css3 text-white text-xl"></i>
-                            <i class="fa-brands fa-php text-white text-xl"></i>
+    <div class="py-16 px-4 relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent via-[#1e1e1e]/30 to-transparent pointer-events-none"></div>
+        <div class="absolute -top-40 -right-40 w-80 h-80 bg-[#9DD0B4] rounded-full blur-[150px] opacity-8"></div>
+        <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-[#9DD0B4] rounded-full blur-[150px] opacity-8"></div>
+        
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="text-center mb-14">
+                <span class="inline-block my-font-sub text-sm tracking-[6px] text-[#9DD0B4] uppercase mb-3">My work</span>
+                <h1 class="text-white my-font text-4xl md:text-6xl font-semibold uppercase tracking-[10px] md:tracking-[16px] my-color-heading">Projects</h1>
+                <p class="my-font-sub text-gray-400 mt-3">3 Featured Projects</p>
+                <div class="w-24 h-0.5 bg-gradient-to-r from-transparent via-[#9DD0B4] to-transparent mx-auto mt-5"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="group relative bg-[#424242]/20 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/5 hover:border-[#9DD0B4]/30 transition-all duration-500 hover:shadow-[0_0_30px_rgba(157,208,180,0.15)] flex flex-col h-full">
+                    <div class="relative h-52 overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#1e1e1e] via-transparent to-transparent z-10"></div>
+                        <img src="img/InventorySystemGnet.png" alt="Inventory Management System" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute top-4 right-4 z-20">
+                            <span class="px-3 py-1 rounded-full bg-[#9DD0B4]/20 text-[#9DD0B4] text-xs my-font-sub border border-[#9DD0B4]/30">Web App</span>
                         </div>
-                        <a href="#" class="text-white text-capitalize text-sm py-2 px-4 bg-blue-500 rounded-lg my-font-sub font-semibold hover:bg-blue-700 duration-300">View</a>
+                    </div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <h3 class="my-font-sub text-xl text-white font-semibold mb-3 group-hover:text-[#9DD0B4] transition-colors">Inventory Management System</h3>
+                        <p class="my-font-sub text-sm text-gray-400 text-justify leading-relaxed min-h-[4.5rem]">A comprehensive inventory management system for NBP/GovNet that tracks assets, monitors stock levels, and provides real-time dashboard analytics. Features include asset registration, stock movement tracking, and financial summaries.</p>
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            <span class="px-3 py-1 rounded-md bg-[#E44D26]/10 text-[#E44D26] text-xs my-font-sub border border-[#E44D26]/20">HTML</span>
+                            <span class="px-3 py-1 rounded-md bg-[#38BDF8]/10 text-[#38BDF8] text-xs my-font-sub border border-[#38BDF8]/20">Tailwind CSS</span>
+                            <span class="px-3 py-1 rounded-md bg-[#3B82F6]/10 text-[#3B82F6] text-xs my-font-sub border border-[#3B82F6]/20">JavaScript</span>
+                            <span class="px-3 py-1 rounded-md bg-[#4285F4]/10 text-[#4285F4] text-xs my-font-sub border border-[#4285F4]/20">Google Apps Script</span>
+                        </div>
+                        <a href="https://inventory-system-gnet.vercel.app/" class="inline-flex items-center gap-2 mt-auto pt-5 text-white my-font-sub text-sm font-semibold group-hover:text-[#9DD0B4] transition-colors">
+                            View Project
+                            <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="group relative bg-[#424242]/20 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/5 hover:border-[#9DD0B4]/30 transition-all duration-500 hover:shadow-[0_0_30px_rgba(157,208,180,0.15)] flex flex-col h-full">
+                    <div class="relative h-52 overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#1e1e1e] via-transparent to-transparent z-10"></div>
+                        <img src="img/SamokiValleyPOS.png" alt="Samoki Valley POS System" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute top-4 right-4 z-20">
+                            <span class="px-3 py-1 rounded-full bg-[#9DD0B4]/20 text-[#9DD0B4] text-xs my-font-sub border border-[#9DD0B4]/30">Web App</span>
+                        </div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <h3 class="my-font-sub text-xl text-white font-semibold mb-3 group-hover:text-[#9DD0B4] transition-colors">Samoki Valley POS System</h3>
+                        <p class="my-font-sub text-sm text-gray-400 text-justify leading-relaxed min-h-[4.5rem]">A modern point-of-sale system for Samoki Valley with real-time sales tracking, revenue analytics, and transaction management. Features include dashboard overview, sales trends, and profit monitoring.</p>
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            <span class="px-3 py-1 rounded-md bg-[#13aa52]/10 text-[#13aa52] text-xs my-font-sub border border-[#13aa52]/20">MongoDB</span>
+                            <span class="px-3 py-1 rounded-md bg-[#68A063]/10 text-[#68A063] text-xs my-font-sub border border-[#68A063]/20">ExpressJS</span>
+                            <span class="px-3 py-1 rounded-md bg-[#61DAFB]/10 text-[#61DAFB] text-xs my-font-sub border border-[#61DAFB]/20">React</span>
+                            <span class="px-3 py-1 rounded-md bg-[#339933]/10 text-[#339933] text-xs my-font-sub border border-[#339933]/20">NodeJS</span>
+                            <span class="px-3 py-1 rounded-md bg-[#38BDF8]/10 text-[#38BDF8] text-xs my-font-sub border border-[#38BDF8]/20">Tailwind CSS</span>
+                        </div>
+                        <a href="https://pos-system-psi-teal.vercel.app/" class="inline-flex items-center gap-2 mt-auto pt-5 text-white my-font-sub text-sm font-semibold group-hover:text-[#9DD0B4] transition-colors">
+                            View Project
+                            <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Card 3 -->
+                <div class="group relative bg-[#424242]/20 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/5 hover:border-[#9DD0B4]/30 transition-all duration-500 hover:shadow-[0_0_30px_rgba(157,208,180,0.15)] flex flex-col h-full">
+                    <div class="relative h-52 overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#1e1e1e] via-transparent to-transparent z-10"></div>
+                        <img src="img/MioymEquities.png" alt="Mioym Equities Webinar System" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute top-4 right-4 z-20">
+                            <span class="px-3 py-1 rounded-full bg-[#9DD0B4]/20 text-[#9DD0B4] text-xs my-font-sub border border-[#9DD0B4]/30">Web App</span>
+                        </div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <h3 class="my-font-sub text-xl text-white font-semibold mb-3 group-hover:text-[#9DD0B4] transition-colors">Mioym Equities Webinar System</h3>
+                        <p class="my-font-sub text-sm text-gray-400 text-justify leading-relaxed min-h-[4.5rem]">A professional webinar platform for Mioym Equities showcasing investment opportunities. Features include event registration, countdown timers, and detailed investment presentations for accredited investors.</p>
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            <span class="px-3 py-1 rounded-md bg-[#E44D26]/10 text-[#E44D26] text-xs my-font-sub border border-[#E44D26]/20">HTML</span>
+                            <span class="px-3 py-1 rounded-md bg-[#38BDF8]/10 text-[#38BDF8] text-xs my-font-sub border border-[#38BDF8]/20">Tailwind CSS</span>
+                            <span class="px-3 py-1 rounded-md bg-[#3B82F6]/10 text-[#3B82F6] text-xs my-font-sub border border-[#3B82F6]/20">JavaScript</span>
+                            <span class="px-3 py-1 rounded-md bg-[#777BB4]/10 text-[#777BB4] text-xs my-font-sub border border-[#777BB4]/20">PHP</span>
+                        </div>
+                        <a href="https://mioymequities.com" class="inline-flex items-center gap-2 mt-auto pt-5 text-white my-font-sub text-sm font-semibold group-hover:text-[#9DD0B4] transition-colors">
+                            View Project
+                            <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                        </a>
                     </div>
                 </div>
             </div>
-            <!-- Card 2 -->
-            <div class="bg-gray-950 shadow-lg shadow-stone-50/50 rounded-xl ring-2 ring-white hover:scale-105 duration-500 flex flex-col">
-                <img src="img/medisync.png" alt="Medisync Project" class="w-full h-52 object-cover rounded-t-lg">
-                <div class="p-5 flex flex-col flex-grow">
-                    <h1 class="my-font-sub text-xl text-center text-white font-semibold">Medisnyc</h1>
-                    <p class="py-2 my-font-sub text-sm text-white text-justify flex-grow">Medisnyc helps patients easily book doctor appointments online. The website makes scheduling medical consultations quick and simple for both patients and doctors.</p>
-                    <div class="flex justify-between items-center mt-4">
-                        <div class="flex items-center gap-2">
-                            <i class="fa-brands fa-html5 text-white text-xl"></i>
-                            <i class="fa-brands fa-css3 text-white text-xl"></i>
-                            <i class="fa-brands fa-php text-white text-xl"></i>
-                        </div>
-                        <a href="https://drive.google.com/drive/folders/1Q1-uQS6nyBhfZYOlYIlXrVpua8s2Tfda?usp=drive_link" class="text-white text-capitalize text-sm py-2 px-4 bg-blue-500 rounded-lg my-font-sub font-semibold hover:bg-blue-700 duration-300">View</a>
-                    </div>
-                </div>
+            
+            <div class="flex items-center justify-center mt-12">
+                <a href="sampledwork.html" class="group relative inline-flex items-center gap-3 px-8 py-3 bg-gradient-to-r from-[#9DD0B4] to-[#6BA88C] text-[#1e1e1e] my-font-sub font-semibold rounded-full overflow-hidden transition-all duration-300 hover:shadow-[0_0_20px_rgba(157,208,180,0.4)]">
+                    <span class="relative z-10">View All Projects</span>
+                    <svg class="w-5 h-5 relative z-10 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                    <div class="absolute inset-0 bg-white/20 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
+                </a>
             </div>
-            <!-- Card 3 -->
-            <div class="bg-gray-950 shadow-lg shadow-stone-50/50 rounded-xl ring-2 ring-white hover:scale-105 duration-500 flex flex-col">
-                <img src="img/bakery.png" alt="Bakeshop and Cafe Project" class="w-full h-52 object-cover rounded-t-lg">
-                <div class="p-5 flex flex-col flex-grow">
-                    <h1 class="my-font-sub text-xl text-center text-white font-semibold">Bakeshop and Cafe</h1>
-                    <p class="py-2 my-font-sub text-sm text-white text-justify flex-grow">A bakeshop and cafe website that showcases delicious pastries and beverages while allowing customers to place orders online. The website features an elegant design with a brown color palette that creates a cozy and rustic atmosphere for visitors to browse the menu and explore our specialty items.</p>
-                    <div class="flex justify-between items-center mt-4">
-                        <div class="flex items-center gap-2">
-                            <i class="fa-brands fa-html5 text-white text-xl"></i>
-                            <i class="fa-brands fa-css3 text-white text-xl"></i>
-                            <i class="fa-brands fa-php text-white text-xl"></i>
-                        </div>
-                        <a href="sampledwork.html" class="text-white text-capitalize text-sm py-2 px-4 bg-blue-500 rounded-lg my-font-sub font-semibold hover:bg-blue-700 duration-300">View</a>
-                    </div>
-                </div>
-            </div>
-         </div>
-         <div class="flex items-center justify-center mt-10">
-            <a href="sampledwork.html" class="overflow-hidden relative w-32 p-2 h-12 bg-black text-white border-2 border-white rounded-md text-xl font-bold cursor-pointer relative z-10 group text-center">
-                View
-                <span class="absolute w-36 h-32 -top-8 -left-2 bg-green-200 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-500 duration-1000 origin-bottom"></span>
-                <span class="absolute w-36 h-32 -top-8 -left-2 bg-green-400 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-700 duration-700 origin-bottom"></span>
-                <span class="absolute w-36 h-32 -top-8 -left-2 bg-green-600 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-1000 duration-500 origin-bottom"></span>
-                <span class="group-hover:opacity-100 group-hover:duration-1000 duration-100 opacity-0 absolute top-2.5 left-6 z-10">Project!</span>
-            </a>
         </div>
     </div>
 
@@ -350,12 +538,21 @@
     // Mobile menu toggle
     const menuBtn = document.getElementById('menu-btn');
     const menu = document.getElementById('menu');
+    const menuClose = document.getElementById('menu-close');
+    const header = document.querySelector('header');
 
     if (menuBtn && menu) {
         // Toggle menu on button click
         menuBtn.addEventListener('click', () => {
             menu.classList.toggle('hidden');
         });
+
+        // Close menu on X button click
+        if (menuClose) {
+            menuClose.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        }
 
         // Hide menu when clicking outside of it
         document.addEventListener('click', (event) => {
@@ -364,6 +561,19 @@
             }
         });
     }
+
+    // Header scroll effect
+    window.addEventListener('scroll', () => {
+        if (header) {
+            if (window.scrollY > 50) {
+                header.classList.add('bg-black/60', 'backdrop-blur-lg', 'shadow-lg');
+                header.classList.remove('bg-black/20');
+            } else {
+                header.classList.remove('bg-black/60', 'backdrop-blur-lg', 'shadow-lg');
+                header.classList.add('bg-black/20');
+            }
+        }
+    });
 
   </script>
 </body>
